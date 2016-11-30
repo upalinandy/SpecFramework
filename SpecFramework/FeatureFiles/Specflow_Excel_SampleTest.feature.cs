@@ -92,7 +92,7 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
         }
         
-        public virtual void Test2(string url, string loginpage, string[] exampleTags)
+        public virtual void Tabletest(string url, string loginpage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "table"};
@@ -100,7 +100,7 @@ this.ScenarioSetup(scenarioInfo);
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("test2", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("tabletest", @__tags);
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -113,11 +113,11 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("test2, https://www.airbnb.co.in/", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("tabletest, https://www.airbnb.co.in/", new string[] {
                 "table"}, SourceLine=20)]
-        public virtual void Test2_HttpsWww_Airbnb_Co_In()
+        public virtual void Tabletest_HttpsWww_Airbnb_Co_In()
         {
-            this.Test2("https://www.airbnb.co.in/", "Welcome to the world of trips.", ((string[])(null)));
+            this.Tabletest("https://www.airbnb.co.in/", "Welcome to the world of trips.", ((string[])(null)));
 #line hidden
         }
         
