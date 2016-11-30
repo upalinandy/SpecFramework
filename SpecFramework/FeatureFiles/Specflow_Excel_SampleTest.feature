@@ -11,7 +11,7 @@ Scenario Outline:Go To Login Page
 	| url                         | signinpage|
 
 @table
-Scenario Outline:test2
+Scenario Outline: tabletest
 	Given User is at homepage <url>
 	When User clicks on Login
 	Then User is navigated to Airbnb <loginpage>
