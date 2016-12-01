@@ -60,7 +60,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>.\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="TechTalk.JiraRestClient, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TechTalk.JiraRestClient.2.5.0\lib\net40-Client\TechTalk.JiraRestClient.dll</HintPath>
@@ -153,7 +155,9 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SpecFlow.Plus.Excel.1.4.2\build\SpecFlow.Plus.Excel.targets" Condition="Exists('..\packages\SpecFlow.Plus.Excel.1.4.2\build\SpecFlow.Plus.Excel.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
