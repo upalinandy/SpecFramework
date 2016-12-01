@@ -60,7 +60,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>.\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="TechTalk.JiraRestClient, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TechTalk.JiraRestClient.2.5.0\lib\net40-Client\TechTalk.JiraRestClient.dll</HintPath>
@@ -114,6 +116,7 @@
     <Compile Include="Jira\JiraApi\Project.cs" />
     <Compile Include="Jira\JiraApi\RootObject.cs" />
     <Compile Include="Jira\JiraBug\BugCreate.cs" />
+    <Compile Include="Jira\JiraBug\JiraTicketNo.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\AddressComponent.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\Geometry.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\Location.cs" />
