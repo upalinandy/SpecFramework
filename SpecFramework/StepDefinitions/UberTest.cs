@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using SpecFramework.ActionClasses;
+using SpecFramework.FeatureFilePath;
 using SpecFramework.GlobalParam;
 using SpecFramework.Jira.JiraBug;
+using SpecFramework.Jira.JiraUserStory;
 using SpecFramework.TestClasses;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace SpecFramework.StepDefinitions
     [Binding]
     public sealed class UberTest
     {
+        UserStoryCreate userStory = new UserStoryCreate();
+        FeatureFileBasePath featurePathBase = new FeatureFileBasePath();
         private UbTest ur = new UbTest();
         BugCreate bug = new BugCreate();
         string exceptiontext = null;
@@ -23,6 +27,10 @@ namespace SpecFramework.StepDefinitions
         [Given(@"User is at homepage (.*)")]
         public void GivenUserIsAtHomepage(string url)
         {
+            string featureName = FeatureContext.Current.FeatureInfo.Title;
+            string featureFilePath = featurePathBase.GetFeatureFilePath(featureName);
+            Console.Out.WriteLine(featureFilePath);
+            userStory.UserStoryCheckCreate(featureName, featureFilePath);
             UIActions.GoToUrl(url);
         }
         [When(@"User clicks on Signin")]

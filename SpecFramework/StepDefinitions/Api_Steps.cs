@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using SpecFrame.GoogleAPI;
+using SpecFramework.FeatureFilePath;
 using SpecFramework.Jira.JiraBug;
+using SpecFramework.Jira.JiraUserStory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,8 @@ namespace SpecFrame.StepDefinitionFiles
     [Binding]
     public sealed class Api_Steps
     {
+        UserStoryCreate userStory = new UserStoryCreate();
+        FeatureFileBasePath featurePath = new FeatureFileBasePath();
         private string googleapiurl;
         private string response;
         BugCreate bug = new BugCreate();
@@ -24,6 +28,9 @@ namespace SpecFrame.StepDefinitionFiles
         [Given(@"Google api that takes address and returns latitude and longitude")]
         public void GivenGoogleApiThatTakesAddressAndReturnsLatitudeAndLongitude()
         {
+            string featureName = FeatureContext.Current.FeatureInfo.Title;
+            string featureFilePath = featurePath.GetFeatureFilePath(featureName);
+            userStory.UserStoryCheckCreate(featureName, featureFilePath);
             googleapiurl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
         }
 
