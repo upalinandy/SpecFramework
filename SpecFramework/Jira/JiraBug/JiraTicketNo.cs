@@ -42,7 +42,12 @@ namespace SpecFramework.Jira.JiraBug
 
 
             string text = File.ReadAllText(featurpath);
-            text = text.Replace("TicketID", tktkey);
+            int count=text.IndexOf("Given");
+            //int count1 = count - 3;
+           
+            text = text.Insert(count, "#"+tktkey+"\n\t") ;
+            
+            //text = text.Replace("TicketID", tktkey);
             File.WriteAllText(featurpath, text);
 
             //string text = File.ReadAllText(featurpath);

@@ -110,12 +110,6 @@
       <DependentUpon>Specflow_Excel_SampleTest.feature</DependentUpon>
     </Compile>
     <Compile Include="GlobalParam\ObjectRepo.cs" />
-    <Compile Include="GoogleAPI\AddressComponent.cs" />
-    <Compile Include="GoogleAPI\Geometry.cs" />
-    <Compile Include="GoogleAPI\Location.cs" />
-    <Compile Include="GoogleAPI\Result.cs" />
-    <Compile Include="GoogleAPI\RootObject.cs" />
-    <Compile Include="GoogleAPI\Viewport.cs" />
     <Compile Include="HookFiles\General.cs" />
     <Compile Include="Jira\JiraApi\fields.cs" />
     <Compile Include="Jira\JiraApi\Issue.cs" />

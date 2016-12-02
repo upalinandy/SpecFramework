@@ -2,8 +2,8 @@
 	To test the latitude and longgitude for location
 
 @api
-Scenario Outline: Verify Latitude and Longitude 
-
+Scenario Outline: Verify Latitude and Longitude
+	
 #SFLOW-175
 	Given Google api that takes address and returns latitude and longitude
 	When The client Gets response by <address>

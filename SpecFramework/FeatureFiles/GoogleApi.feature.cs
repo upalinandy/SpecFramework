@@ -87,7 +87,7 @@ this.ScenarioSetup(scenarioInfo);
                 "source:DataResources\\APIData.xlsx"}, SourceLine=0)]
         public virtual void VerifyLatitudeAndLongitude_1600AmphitheatreParkwayMountainViewCA()
         {
-            this.VerifyLatitudeAndLongitude("1600+Amphitheatre+Parkway,+Mountain+View,+CA", "36", "-122.084406", new string[] {
+            this.VerifyLatitudeAndLongitude("1600+Amphitheatre+Parkway,+Mountain+View,+CA", "37.4223664", "-122.084406", new string[] {
                         "source:DataResources\\APIData.xlsx"});
 #line hidden
         }
