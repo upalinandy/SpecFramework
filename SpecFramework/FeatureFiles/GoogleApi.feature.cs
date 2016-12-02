@@ -72,11 +72,11 @@ namespace SpecFramework.FeatureFiles
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Latitude and Longitude", @__tags);
 #line 5
 this.ScenarioSetup(scenarioInfo);
-#line 6
- testRunner.Given("Google api that takes address and returns latitude and longitude", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
- testRunner.When(string.Format("The client Gets response by {0}", address), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
+ testRunner.Given("Google api that takes address and returns latitude and longitude", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.When(string.Format("The client Gets response by {0}", address), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
  testRunner.Then(string.Format("The {0} and {1} returned should be as expected", latitude, longitude), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

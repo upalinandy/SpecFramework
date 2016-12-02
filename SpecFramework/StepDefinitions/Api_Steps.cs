@@ -21,6 +21,9 @@ namespace SpecFrame.StepDefinitionFiles
         private string googleapiurl;
         private string response;
         BugCreate bug = new BugCreate();
+        JiraTicketNo TicketNo = new JiraTicketNo();
+        FeatureFileBasePath fpath = new FeatureFileBasePath();
+
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
@@ -71,7 +74,14 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 if (bugcreateflag == true)
                 {
+                    string featureName = FeatureContext.Current.FeatureInfo.Title;
+
+                    string featureFilePath = fpath.GetFeatureFilePath(featureName);
+
+
                     bug.create(bugsummary, exceptiontext);
+                    TicketNo.getJiraTicketId(featureFilePath,bugsummary);
+
                 }              
             }
 
