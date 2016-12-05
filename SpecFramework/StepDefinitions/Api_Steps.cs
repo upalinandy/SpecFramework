@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SpecFrame.GoogleAPI;
 using SpecFramework.FeatureFilePath;
 using SpecFramework.Jira.JiraBug;
+using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace SpecFrame.StepDefinitionFiles
     [Binding]
     public sealed class Api_Steps
     {
-        UserStoryCreate userStory = new UserStoryCreate();
+        //UserStoryCreate userStory = new UserStoryCreate();
+        NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePath = new FeatureFileBasePath();
         private string googleapiurl;
         private string response;
-        BugCreate bug = new BugCreate();
+         BugCreate bug = new BugCreate();
+       // TestCreate test = new TestCreate();
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
@@ -30,7 +33,8 @@ namespace SpecFrame.StepDefinitionFiles
         {
             string featureName = FeatureContext.Current.FeatureInfo.Title;
             string featureFilePath = featurePath.GetFeatureFilePath(featureName);
-            userStory.UserStoryCheckCreate(featureName, featureFilePath);
+            //    userStory.UserStoryCheckCreate(featureName, featureFilePath);
+            newfeature.NewFeatureCheckCreate(featureName, featureFilePath);
             googleapiurl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
         }
 
@@ -71,7 +75,8 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 if (bugcreateflag == true)
                 {
-                    bug.create(bugsummary, exceptiontext);
+                  bug.create(bugsummary, exceptiontext);
+                //    test.create(bugsummary, exceptiontext);
                 }              
             }
 
