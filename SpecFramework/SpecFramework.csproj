@@ -117,6 +117,7 @@
     <Compile Include="Jira\JiraApi\Project.cs" />
     <Compile Include="Jira\JiraApi\RootObject.cs" />
     <Compile Include="Jira\JiraBug\BugCreate.cs" />
+    <Compile Include="Jira\JiraNewFeature\NewFeatureCreate.cs" />
     <Compile Include="Jira\JiraUserStory\UserStoryCreate.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\AddressComponent.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\Geometry.cs" />

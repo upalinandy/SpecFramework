@@ -3,6 +3,7 @@ using SpecFramework.ActionClasses;
 using SpecFramework.FeatureFilePath;
 using SpecFramework.GlobalParam;
 using SpecFramework.Jira.JiraBug;
+using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
 using SpecFramework.TestClasses;
 using System;
@@ -16,7 +17,8 @@ namespace SpecFramework.StepDefinitions
     [Binding]
     public sealed class UberTest
     {
-        UserStoryCreate userStory = new UserStoryCreate();
+        //  UserStoryCreate userStory = new UserStoryCreate();
+        NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePathBase = new FeatureFileBasePath();
         private UbTest ur = new UbTest();
         BugCreate bug = new BugCreate();
@@ -30,7 +32,8 @@ namespace SpecFramework.StepDefinitions
             string featureName = FeatureContext.Current.FeatureInfo.Title;
             string featureFilePath = featurePathBase.GetFeatureFilePath(featureName);
             Console.Out.WriteLine(featureFilePath);
-            userStory.UserStoryCheckCreate(featureName, featureFilePath);
+            // userStory.UserStoryCheckCreate(featureName, featureFilePath);
+            newfeature.NewFeatureCheckCreate(featureName, featureFilePath);
             UIActions.GoToUrl(url);
         }
         [When(@"User clicks on Signin")]
