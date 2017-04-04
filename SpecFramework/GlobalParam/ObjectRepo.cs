@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
 using SpecFramework.CommonUtils;
 using SpecFramework.Config.Interfaces;
@@ -16,5 +17,8 @@ namespace SpecFramework.GlobalParam
         public static IWebDriver driver { get; set; }
         public static DriverSetup ds { get; set; }
         public static WebDriverWait wait { get; set; }
+        public static IJavaScriptExecutor js { get; set; }
+        public static PhantomJSDriver phantom { get; set; }
+        public static WebDriverWait pwait { get; set; }
     }
 }
