@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SpecFramework.GlobalParam;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,47 @@ namespace SpecFramework.ActionClasses
             return ObjectRepo.driver.Title;
         }
 
+        public static void sendKey(By elem, string data)
+        {
+            ObjectRepo.driver.FindElement(elem).SendKeys(data);
+        }
+
+        public static void elementExists(By elem)
+        {
+            ObjectRepo.wait.Until(ExpectedConditions.ElementExists(elem));
+        }
+
+        
+        public static IWebElement findElement(string locator, string replacer)
+        {
+            return ObjectRepo.driver.FindElement(By.XPath(locator.Replace("REPLACE", ""+ replacer)));
+        }
+
+        public static Boolean ElementDisplayed(By elem)
+        {
+            return ObjectRepo.driver.FindElement(elem).Displayed;
+        }
+
+        public static string getUrl()
+        {
+            return ObjectRepo.driver.Url;
+        }
+
+     
+
+        public static bool pageload()
+        {
+            IJavaScriptExecutor je = (IJavaScriptExecutor)ObjectRepo.driver;
+           return (bool)je.ExecuteScript("return document.readyState").Equals("complete");
+        }
+
+        
+
+
+
     }
+
+
+
     }
+    

@@ -1,6 +1,6 @@
 ﻿Feature: Specflow_Excel_SampleTest
 
-@excel
+@excel @test
 Scenario Outline:Go To Login Page
 	Given User is at homepage <url>
 	When User clicks on Signin
@@ -10,15 +10,15 @@ Scenario Outline:Go To Login Page
 	Examples: 
 	| url                         | signinpage|
 
-@table
+@table @test
 Scenario Outline: tabletest
 	Given User is at homepage <url>
 	When User clicks on Login
 	Then User is navigated to Airbnb <loginpage>
 
 	Examples: 
-	| url                       | loginpage                      |
-	| https://www.airbnb.co.in/ | Welcome to the world of trips.  |
+	| url                       | loginpage                  |
+	| https://www.airbnb.co.in/ |Vacation Rentals, Homes, Experiences & Places - Airbnb  |
 
       
 

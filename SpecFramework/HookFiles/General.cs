@@ -11,6 +11,12 @@ namespace SpecFramework.HookFiles
     public sealed class General
     {
    
+        [BeforeScenario("api", "excel", "table")]
+        public void BeforeScneario()
+        {
+
+        }
+
         [AfterScenario("api" , "excel", "table")]
         public void AfterScenario()
         {
