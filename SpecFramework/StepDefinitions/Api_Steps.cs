@@ -7,6 +7,7 @@ using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -17,23 +18,30 @@ namespace SpecFrame.StepDefinitionFiles
     [Binding]
     public sealed class Api_Steps
     {
-        //UserStoryCreate userStory = new UserStoryCreate();
+       
         NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePath = new FeatureFileBasePath();
+        JiraTicketKeyIssue key = new JiraTicketKeyIssue();
         private string googleapiurl;
         private string response;
          BugCreate bug = new BugCreate();
-       // TestCreate test = new TestCreate();
+    
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
+
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("dd-MM-yyyy, HH:mm");
+        }
+
 
         [Given(@"Google api that takes address and returns latitude and longitude")]
         public void GivenGoogleApiThatTakesAddressAndReturnsLatitudeAndLongitude()
         {
             string featureName = FeatureContext.Current.FeatureInfo.Title;
             string featureFilePath = featurePath.GetFeatureFilePath(featureName);
-            //    userStory.UserStoryCheckCreate(featureName, featureFilePath);
+            string ProjFolderPath = Directory.GetCurrentDirectory();
             newfeature.NewFeatureCheckCreate(featureName, featureFilePath);
             googleapiurl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
         }
@@ -48,7 +56,7 @@ namespace SpecFrame.StepDefinitionFiles
             sb.Append(address);
             Uri uri = new Uri(sb.ToString());
             response = cl.GetStringAsync(uri).Result;
-            //    root = JsonConvert.DeserializeObject<RootObject>(response);
+         
             var test = response;
         }
 
@@ -59,6 +67,15 @@ namespace SpecFrame.StepDefinitionFiles
             var location = root.results[0].geometry.location;
             var latitude = location.lat;
             var longitude = location.lng;
+            string featureName = FeatureContext.Current.FeatureInfo.Title;
+            string scenarioname = ScenarioContext.Current.ScenarioInfo.Title;
+            bugsummary = "Google api test does not give correct result";
+            string featureFilePath = featurePath.GetFeatureFilePath(featureName);
+            String timeStamp = GetTimestamp(DateTime.Now);
+            List<string> Text = File.ReadAllLines(featureFilePath).ToList();
+            int index = Text.FindIndex(x => x.Contains(scenarioname));
+            index = index - 1;
+            string latestexectiontext = "#Latest Execution";
             try
             {
                 Assert.AreEqual(location.lat.ToString(), exp_lat);
@@ -68,7 +85,6 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 bugcreateflag = true;
                 exceptiontext = ex.ToString();
-                bugsummary = "Google api test does not give correct result";
                 throw ex;
             }
             finally
@@ -76,7 +92,7 @@ namespace SpecFrame.StepDefinitionFiles
                 if (bugcreateflag == true)
                 {
                   bug.create(bugsummary, exceptiontext);
-                //    test.create(bugsummary, exceptiontext);
+                  key.getJiraTicketId(featureFilePath, bugsummary, scenarioname);
                 }              
             }
 
