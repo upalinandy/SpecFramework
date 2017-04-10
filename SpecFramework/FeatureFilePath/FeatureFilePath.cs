@@ -11,10 +11,10 @@ namespace SpecFramework.FeatureFilePath
     {
         public string GetFeatureFilePath(string featureName)
         {
-          //  string ProjFolderPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString();
-           // Console.WriteLine("Project Folder path:" + ProjFolderPath);
-           // string pathForFeature = "\\SpecFramework\\FeatureFiles";
-            string pathForFeature = "..\\SpecFramework\\FeatureFiles";
+             string ProjFolderPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString();
+             Console.WriteLine("Project Folder path:" + ProjFolderPath);
+           // works in visual studio string pathForFeature = "\\SpecFramework\\FeatureFiles";
+             string pathForFeature = "..\\..\\FeatureFiles";
             string filename = featureName + ".feature";
            // string[] filePaths = Directory.GetFiles(ProjFolderPath + pathForFeature, filename, SearchOption.AllDirectories);
             string[] filePaths = Directory.GetFiles(pathForFeature, filename, SearchOption.AllDirectories);
