@@ -9,7 +9,7 @@
   <TestAssemblyPaths>
     <TestAssemblyPath>SpecFramework.dll</TestAssemblyPath>
   </TestAssemblyPaths>
-  <Filter>@test | @excel | @table</Filter>
+  <Filter>@api | @excel |@table</Filter>
   <DeploymentTransformation>
     <Steps>
       <!-- sample config transform to change the connection string-->

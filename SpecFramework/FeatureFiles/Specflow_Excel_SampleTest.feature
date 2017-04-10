@@ -1,6 +1,6 @@
 ﻿Feature: Specflow_Excel_SampleTest
 
-@excel @test
+@excel
 Scenario Outline:Go To Login Page
 	Given User is at homepage <url>
 	When User clicks on Signin
@@ -10,7 +10,7 @@ Scenario Outline:Go To Login Page
 	Examples: 
 	| url                         | signinpage|
 
-@table @test
+@table
 Scenario Outline: tabletest
 	Given User is at homepage <url>
 	When User clicks on Login

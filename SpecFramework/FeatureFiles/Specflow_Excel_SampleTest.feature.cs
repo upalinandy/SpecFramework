@@ -64,8 +64,7 @@ namespace SpecFramework.FeatureFiles
         public virtual void GoToLoginPage(string url, string signinpage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "excel",
-                    "test"};
+                    "excel"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -85,7 +84,6 @@ this.ScenarioSetup(scenarioInfo);
         
         [TechTalk.SpecRun.ScenarioAttribute("Go To Login Page,  https://www.uber.com/en-IN/", new string[] {
                 "excel",
-                "test",
                 "source:DataResources\\TestData.xlsx"}, SourceLine=0)]
         public virtual void GoToLoginPage_HttpsWww_Uber_ComEn_IN()
         {
@@ -97,8 +95,7 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Tabletest(string url, string loginpage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "table",
-                    "test"};
+                    "table"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -117,8 +114,7 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("tabletest, https://www.airbnb.co.in/", new string[] {
-                "table",
-                "test"}, SourceLine=20)]
+                "table"}, SourceLine=20)]
         public virtual void Tabletest_HttpsWww_Airbnb_Co_In()
         {
             this.Tabletest("https://www.airbnb.co.in/", "Vacation Rentals, Homes, Experiences & Places - Airbnb", ((string[])(null)));

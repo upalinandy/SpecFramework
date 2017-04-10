@@ -22,8 +22,12 @@ namespace SpecFrame.StepDefinitionFiles
         NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePath = new FeatureFileBasePath();
         JiraTicketKeyIssue key = new JiraTicketKeyIssue();
+        JiraTimeStamp ts = new JiraTimeStamp();
         private string googleapiurl;
         private string response;
+        private string timestamp;
+        private string lastexecflag = "";
+
          BugCreate bug = new BugCreate();
     
         string exceptiontext = null;
@@ -71,19 +75,26 @@ namespace SpecFrame.StepDefinitionFiles
             string scenarioname = ScenarioContext.Current.ScenarioInfo.Title;
             bugsummary = "Google api test does not give correct result";
             string featureFilePath = featurePath.GetFeatureFilePath(featureName);
-            String timeStamp = GetTimestamp(DateTime.Now);
+            timestamp = GetTimestamp(DateTime.Now);
             List<string> Text = File.ReadAllLines(featureFilePath).ToList();
             int index = Text.FindIndex(x => x.Contains(scenarioname));
             index = index - 1;
-            string latestexectiontext = "#Latest Execution";
+            string latestexecuttext = "";
             try
             {
+                Console.WriteLine("inside try");
                 Assert.AreEqual(location.lat.ToString(), exp_lat);
                 Assert.AreEqual(location.lng.ToString(), exp_lng);
+                lastexecflag = "pass";
+                latestexecuttext = "#Last Execution Passed on: "+timestamp;
+            //    ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag);
+
             }
             catch (Exception ex)
             {
                 bugcreateflag = true;
+                lastexecflag = "fail";
+                latestexecuttext = "#Last Execution Failed on: "+timestamp;
                 exceptiontext = ex.ToString();
                 throw ex;
             }
@@ -93,6 +104,7 @@ namespace SpecFrame.StepDefinitionFiles
                 {
                   bug.create(bugsummary, exceptiontext);
                   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname);
+                  ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext,bugcreateflag,lastexecflag);
                 }              
             }
 
