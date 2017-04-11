@@ -26,9 +26,8 @@ namespace SpecFrame.StepDefinitionFiles
         private string googleapiurl;
         private string response;
         private string timestamp;
-        private string lastexecflag = "";
 
-         BugCreate bug = new BugCreate();
+        BugCreate bug = new BugCreate();
     
         string exceptiontext = null;
         string bugsummary = null;
@@ -85,7 +84,7 @@ namespace SpecFrame.StepDefinitionFiles
                 Console.WriteLine("inside try");
                 Assert.AreEqual(location.lat.ToString(), exp_lat);
                 Assert.AreEqual(location.lng.ToString(), exp_lng);
-                lastexecflag = "pass";
+          
                 latestexecuttext = "#Last Execution Passed on: "+timestamp;
             //    ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag);
 
@@ -93,19 +92,19 @@ namespace SpecFrame.StepDefinitionFiles
             catch (Exception ex)
             {
                 bugcreateflag = true;
-                lastexecflag = "fail";
+       
                 latestexecuttext = "#Last Execution Failed on: "+timestamp;
                 exceptiontext = ex.ToString();
                 throw ex;
             }
             finally
             {
-                if (bugcreateflag == true)
+                if (bugcreateflag)
                 {
-                  bug.create(bugsummary, exceptiontext);
-                  key.getJiraTicketId(featureFilePath, bugsummary, scenarioname);
-                  ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext,bugcreateflag,lastexecflag);
-                }              
+                    bug.create(bugsummary, exceptiontext);
+                    key.getJiraTicketId(featureFilePath, bugsummary, scenarioname);
+                }
+                  ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
             }
 
 

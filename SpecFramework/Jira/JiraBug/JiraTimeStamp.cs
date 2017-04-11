@@ -18,33 +18,8 @@ namespace SpecFramework.Jira.JiraBug
     public class JiraTimeStamp
     {
 
-        public void update(string featurpath, string bugSummary, string scenarioName, string lastex, bool bugcreate, string lastexecflag)
+        public void update(string featurpath, string bugSummary, string scenarioName, string lastex, bool bugcreateflag)
         {
-            /*
-            HttpClient client1 = new HttpClient();
-
-            string Apiurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issuetype&fields=summary&fields=description");
-
-            var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
-            client1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));
-            Uri uri = new Uri(Apiurl.ToString());
-            string ApiResponse = client1.GetStringAsync(uri).Result;
-            var root = JsonConvert.DeserializeObject<RootObject>(ApiResponse);
-            var issues = root.issues;
-
-            foreach (var item in issues)
-            {
-                var summary = (item.fields.summary).ToString();
-                if (item.fields.issuetype.name == "Bug" & item.fields.summary == bugSummary)
-                {
-                    tktID = item.id;
-                    tktkey = item.key;
-                    break;
-                }
-
-            }
-            */
-
             List<string> Text = File.ReadAllLines(featurpath).ToList();
             //    string keyToInsert = "#" + tktkey;
             //    string trimmedText = keyToInsert.Remove(7);
@@ -57,19 +32,31 @@ namespace SpecFramework.Jira.JiraBug
             Console.WriteLine("JiraTime stamp here");
             int length = scenarioName.Length;
             int index = Text.FindIndex(x => x.Contains(scenarioName));
+            Console.WriteLine("firstindex: " + index);
 
-            if (bugcreate)
-            { 
               index = index + 2;
-            }
-            else
+            Console.WriteLine("Text here:" + Text[index]);
+            Console.WriteLine("index: " + index);
+            string a = Text[index];
+            Console.WriteLine("a: " + a+ "index"+ index);
+            if (a.Contains("Given"))
             {
-             index = index +1;
+                Console.WriteLine("now inside given :"+ index);
+                Text.Insert(index, lastex);
             }
-                string a = Text[index];
-           
-                    Text.Insert(index, lastex);
-          
+            else if (a.Contains("When"))
+            {
+                Console.WriteLine("now inside else if:" + index);
+             
+                Text.Insert((index-1), lastex);
+            }
+            else 
+            {
+                Console.WriteLine("now inside else:" +index);
+                Text.RemoveAt(index);
+                Text.Insert(index, lastex);
+            }
+                
                     System.IO.File.WriteAllLines(featurpath, Text);
                                
             }
