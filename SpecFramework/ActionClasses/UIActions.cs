@@ -61,7 +61,29 @@ namespace SpecFramework.ActionClasses
            return (bool)je.ExecuteScript("return document.readyState").Equals("complete");
         }
 
-        
+        public static void selectByVisibleText(By elem, string data)
+        {
+            Console.WriteLine("Inside Select by visible text");
+            Console.WriteLine("elem: " + elem);
+            Console.WriteLine("data: " + data);
+
+            ObjectRepo.driver.FindElement(elem);
+            SelectElement dropdown = new SelectElement(ObjectRepo.driver.FindElement(elem));   
+            dropdown.SelectByText(data);
+            Console.WriteLine(dropdown);
+        }
+
+        public static void waitFor(int timeoutinseconds)
+        {
+            ObjectRepo.wait = new WebDriverWait(ObjectRepo.driver, TimeSpan.FromSeconds(timeoutinseconds));
+        }
+
+        public static void selectByValue(By elem, string data)
+        {
+            SelectElement dropdown = new SelectElement(ObjectRepo.driver.FindElement(elem));
+            dropdown.SelectByValue(data);
+        }
+
 
 
 
