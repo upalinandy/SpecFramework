@@ -39,18 +39,20 @@ namespace SpecFramework.Jira.JiraNewFeature
             //Checking if the new feature already exists by iterating though the issue list in jira
             bool FeatureExists = false;
             var issues = root.issues;
+            Console.WriteLine("upali filename: " + fileName);
             string[] textLinesFT = System.IO.File.ReadAllLines(fileName);
-
+            Console.WriteLine("upali textLinesFT: " + textLinesFT);
             //Finding the feature name from the feature file which will be the name of the ticket
             string FeatureKeyword = "Feature";
             string FeaureTRName = string.Empty;
 
-            foreach (string line2 in textLinesFT)
+            foreach (string line in textLinesFT)
             {
-                if (line2.Contains(FeatureKeyword))
+                
+                if (line.Contains(FeatureKeyword))
                 {
-                    results.Add(line2);
-                    FeaureTRName = line2;
+                    results.Add(line);
+                    FeaureTRName = line;
                 }
             }
             //Trim the New Feature name to display only the Feature name
