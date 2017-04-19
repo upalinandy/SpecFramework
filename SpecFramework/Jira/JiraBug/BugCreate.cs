@@ -56,7 +56,6 @@ namespace SpecFramework.Jira.JiraBug
                 data.fields.project.key = "SFLOW";
                 data.fields.summary = bugsummary;
                 data.fields.description = errordetails;
-
                 data.fields.issuetype.name = "Bug";
 
                 string postUrl = "https://spiderlogic.jira.com/rest/api/latest/";
