@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace SpecFramework.Jira.JiraApi
 {
-    public class Fields
+   public class NewFields
     {
         [JsonProperty("summary")]
         public string summary { get; set; }
         public IssueType issuetype { get; set; }
-        public string description { get; set; }        
+        public string description { get; set; }
         public Project project { get; set; }
-        public Status status { get; set; }
 
 
-        public Fields()
+
+        public NewFields()
         {
             project = new Project();
             issuetype = new IssueType();
-            status = new Status();
+ 
 
 
         }

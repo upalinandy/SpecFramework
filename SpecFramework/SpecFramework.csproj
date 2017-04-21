@@ -112,11 +112,15 @@
     </Compile>
     <Compile Include="GlobalParam\ObjectRepo.cs" />
     <Compile Include="HookFiles\General.cs" />
+    <Compile Include="Jira\JiraApi\BugState.cs" />
+    <Compile Include="Jira\JiraApi\CreateIssue.cs" />
     <Compile Include="Jira\JiraApi\fields.cs" />
     <Compile Include="Jira\JiraApi\Issue.cs" />
     <Compile Include="Jira\JiraApi\IssueType.cs" />
+    <Compile Include="Jira\JiraApi\NewFields.cs" />
     <Compile Include="Jira\JiraApi\Project.cs" />
     <Compile Include="Jira\JiraApi\RootObject.cs" />
+    <Compile Include="Jira\JiraApi\Status.cs" />
     <Compile Include="Jira\JiraBug\BugCreate.cs" />
     <Compile Include="Jira\JiraBug\JiraTicketKeyIssue.cs" />
     <Compile Include="Jira\JiraBug\JiraTimeStamp.cs" />

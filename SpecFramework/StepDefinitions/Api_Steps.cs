@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SpecFrame.GoogleAPI;
 using SpecFramework.FeatureFilePath;
+using SpecFramework.Jira.JiraApi;
 using SpecFramework.Jira.JiraBug;
 using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
@@ -32,6 +33,10 @@ namespace SpecFrame.StepDefinitionFiles
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
+       // bool bugclosed =false;
+        BugState bugstate = new BugState();
+
+
 
         public static String GetTimestamp(DateTime value)
         {
@@ -66,7 +71,7 @@ namespace SpecFrame.StepDefinitionFiles
         [Then(@"The (.*) and (.*) returned should be as expected")]
         public void ThenTheAndReturnedShouldBeAsExpected(string exp_lat, string exp_lng)
         {
-            var root = JsonConvert.DeserializeObject<RootObject>(response);
+            var root = JsonConvert.DeserializeObject<GoogleAPI.RootObject>(response);
             var location = root.results[0].geometry.location;
             var latitude = location.lat;
             var longitude = location.lng;
@@ -101,8 +106,8 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 if (bugcreateflag)
                 {
-                    bug.create(bugsummary, exceptiontext);
-                    key.getJiraTicketId(featureFilePath, bugsummary, scenarioname);
+                  bugstate =   bug.create(bugsummary, exceptiontext);
+                  key.getJiraTicketId(featureFilePath, bugsummary, scenarioname,bugstate);
                 }
                   ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
             }

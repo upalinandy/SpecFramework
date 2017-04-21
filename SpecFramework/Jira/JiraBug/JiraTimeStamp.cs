@@ -29,17 +29,27 @@ namespace SpecFramework.Jira.JiraBug
                  }*/
             //    else
             //    {
-            Console.WriteLine("JiraTime stamp here");
+            Console.WriteLine("Now Begins JIRA TIME STAMP");
             int length = scenarioName.Length;
             int index = Text.FindIndex(x => x.Contains(scenarioName));
             Console.WriteLine("firstindex: " + index);
 
               index = index + 2;
-            Console.WriteLine("Text here:" + Text[index]);
-            Console.WriteLine("index: " + index);
+            Console.WriteLine("index + 2: " + index);
+            Console.WriteLine("Then Text at index + 2 :" + Text[index]);
+            
             string a = Text[index];
             Console.WriteLine("a: " + a+ "index"+ index);
-            if (a.Contains("Given"))
+            if (a.Contains("#SFLOW"))
+            {
+                Console.WriteLine("now inside #SFLOW :" + index);
+                //Text.Remove(a);
+                Console.WriteLine("Text at index+1 : " + Text[index + 1]);
+                Text.RemoveAt(index + 1);
+                Text.Insert((index+1), lastex);
+            }
+
+           else if (a.Contains("Given"))
             {
                 Console.WriteLine("now inside given :"+ index);
                 Text.Insert(index, lastex);
