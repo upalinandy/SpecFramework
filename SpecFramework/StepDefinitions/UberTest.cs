@@ -26,6 +26,7 @@ namespace SpecFramework.StepDefinitions
         string bugsummary = null;
         bool bugcreateflag = false;
 
+
         [Given(@"User is at homepage (.*)")]
         public void GivenUserIsAtHomepage(string url)
         {
