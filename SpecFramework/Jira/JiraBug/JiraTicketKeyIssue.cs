@@ -36,7 +36,7 @@ namespace SpecFramework.Jira.JiraBug
 
             string Apiurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issuetype&fields=summary&fields=description&fields=status");
 
-            var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
+            var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
             client1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));
             Uri uri = new Uri(Apiurl.ToString());
             string ApiResponse = client1.GetStringAsync(uri).Result;
