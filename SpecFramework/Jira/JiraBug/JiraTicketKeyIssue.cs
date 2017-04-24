@@ -28,10 +28,14 @@ namespace SpecFramework.Jira.JiraBug
         string trimmedText = "";
         List<string> Text = null;
         string summary = "";
-   
+        private string timestamp;
+
         public void getJiraTicketId(string featurpath, string bugSummary, string scenarioName, BugState bg)
         {
             Console.WriteLine("Bazooka : Entereed JIRA TICKET ID");
+
+            timestamp = DateTime.Now.ToString("dd-MM-yyyy, HH:mm");
+
             HttpClient client1 = new HttpClient();
 
             string Apiurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issuetype&fields=summary&fields=description&fields=status");
@@ -121,7 +125,7 @@ namespace SpecFramework.Jira.JiraBug
                 Console.WriteLine("Upali ClosedKey: " + closedtktkey);
 
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + closedtktkey + "  Closed ";
+                keyToInsert = "#" + closedtktkey + " Closed " + timestamp;
                 trimmedText = keyToInsert.Remove(7);
 
                     int length = scenarioName.Length;
@@ -146,7 +150,7 @@ namespace SpecFramework.Jira.JiraBug
             {
                 Console.WriteLine("Bazooka : In Jiraticket if openedafterclosed writing intofeature");
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + opentktkey + " Opened ";
+                keyToInsert = "#" + opentktkey + " Opened " + timestamp;
                 Console.WriteLine("Text: " + Text);
                 Console.WriteLine("keyToInsert: " + keyToInsert);
                 trimmedText = keyToInsert.Remove(10);
@@ -179,7 +183,7 @@ namespace SpecFramework.Jira.JiraBug
             Console.WriteLine("Bazooka : In Jiraticket if opened new writing intofeature");
 
             Text = File.ReadAllLines(featurpath).ToList();
-            keyToInsert = "#" + tktkey +" Opened";
+            keyToInsert = "#" + tktkey +" Opened " + timestamp;
                 Console.WriteLine("Text: " + Text);
                 Console.WriteLine("keyToInsert: " + keyToInsert);
                 trimmedText = keyToInsert.Remove(7);               
