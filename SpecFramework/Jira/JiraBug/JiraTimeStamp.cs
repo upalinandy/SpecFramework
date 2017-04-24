@@ -51,8 +51,21 @@ namespace SpecFramework.Jira.JiraBug
 
            else if (a.Contains("Given"))
             {
-                Console.WriteLine("now inside given :"+ index);
-                Text.Insert(index, lastex);
+                int newindex = index - 1;
+                string b = Text[newindex];
+                Console.WriteLine("b contains: " + b);
+                if (b.Contains("Passed"))
+                {
+                    Text.RemoveAt(newindex);
+                    Text.Insert(newindex, lastex);
+
+                }
+                else {
+                    Console.WriteLine("bugcreateflag :" + bugcreateflag);
+                    Console.WriteLine("now inside given :" + index);
+                    Text.Insert(index, lastex);
+                }
+               
             }
             else if (a.Contains("When"))
             {
