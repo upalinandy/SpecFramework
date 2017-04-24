@@ -29,6 +29,7 @@ namespace SpecFrame.StepDefinitionFiles
         private string timestamp;
 
         BugCreate bug = new BugCreate();
+        AddJiraComment comment = new AddJiraComment();
     
         string exceptiontext = null;
         string bugsummary = null;
@@ -109,7 +110,8 @@ namespace SpecFrame.StepDefinitionFiles
                   bugstate =   bug.create(bugsummary, exceptiontext);
                   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname,bugstate);
                 }
-                  ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
+                comment.addComment(bugsummary, latestexecuttext);
+                ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
             }
 
 
