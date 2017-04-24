@@ -21,9 +21,9 @@ namespace SpecFramework.Jira.JiraBug
 
             //Check if the issue exists
             HttpClient client2 = new HttpClient();
-            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary");
+            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype&fields=status");
 
-            var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
+            var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
             client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));
             Uri uri = new Uri(issueurl.ToString());
             string ApiResponse = client2.GetStringAsync(uri).Result;
@@ -59,7 +59,7 @@ namespace SpecFramework.Jira.JiraBug
                             string postUrl = "https://spiderlogic.jira.com/rest/api/2/issue/" + tktID + "/comment";
                             System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
                             client.BaseAddress = new System.Uri(postUrl);
-                            byte[] cred = UTF8Encoding.UTF8.GetBytes("psubrahmanya:Gonikoppal@1234");
+                            byte[] cred = UTF8Encoding.UTF8.GetBytes("rdoshi@spiderlogic.com:spiderqa");
                             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(cred));
                             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                             System.Net.Http.Formatting.MediaTypeFormatter jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
