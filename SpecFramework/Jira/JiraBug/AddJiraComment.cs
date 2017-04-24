@@ -21,7 +21,7 @@ namespace SpecFramework.Jira.JiraBug
 
             //Check if the issue exists
             HttpClient client2 = new HttpClient();
-            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype&fields=status");
+            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype");
 
             var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
             client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));

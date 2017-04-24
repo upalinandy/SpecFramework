@@ -35,7 +35,7 @@ namespace SpecFramework.Jira.JiraBug
             HttpClient client2 = new HttpClient();
             //   string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary");
             //   string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status");
-            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype&fields=status");
+            string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype");
 
             // var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
             var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
