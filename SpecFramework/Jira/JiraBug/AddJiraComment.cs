@@ -16,6 +16,9 @@ namespace SpecFramework.Jira.JiraBug
         {
             string tktID = null;
             string tkyKey = null;
+            string state = "";
+            string issuetype = "";
+
             //Check if the issue exists
             HttpClient client2 = new HttpClient();
             string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary");
@@ -34,43 +37,53 @@ namespace SpecFramework.Jira.JiraBug
                 var fields = issue.fields;
                 Console.WriteLine("fields:" + fields);
                 var summary = (fields.summary).ToString();
-                if (summary.Equals(bugsummary))
+                state = (fields.status.name).ToString();
+                issuetype = (fields.issuetype.name).ToString();
+
+                if (issuetype == "Bug")
                 {
-                    Console.WriteLine("Issue exists in the project");
-                    tktID = issue.id;
-                    tkyKey = issue.key;
-
-                    var data = new Comment();
-
-                    data.body = commenttext;
-
-                    string postUrl = "https://spiderlogic.jira.com/rest/api/2/issue/"+tktID+"/comment";
-                    System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
-                    client.BaseAddress = new System.Uri(postUrl);
-                    byte[] cred = UTF8Encoding.UTF8.GetBytes("psubrahmanya:Gonikoppal@1234");
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(cred));
-                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    System.Net.Http.Formatting.MediaTypeFormatter jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
-                    System.Net.Http.HttpContent content = new System.Net.Http.ObjectContent<Comment>(data, jsonFormatter);
-                    System.Net.Http.HttpResponseMessage response = client.PostAsync("comment", content).Result;
-
-                    if (response.IsSuccessStatusCode)
+                    Console.WriteLine("Issue Type" +issuetype);
+                    if (summary.Equals(bugsummary))
                     {
-                        string result = response.Content.ReadAsStringAsync().Result;
-                        Console.Write(result);
-                    }
-                    else
-                    {
-                        Console.Write(response.StatusCode.ToString());
-                        Console.ReadLine();
-                    }
+                        Console.WriteLine("Issue exists in the project");
+                        Console.WriteLine("state :" + state);
+                        if (state == "Open")
+                        {
+                            tktID = issue.id;
+                            tkyKey = issue.key;
 
-                   break; 
+                            var data = new Comment();
+
+                            data.body = commenttext;
+
+                            string postUrl = "https://spiderlogic.jira.com/rest/api/2/issue/" + tktID + "/comment";
+                            System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
+                            client.BaseAddress = new System.Uri(postUrl);
+                            byte[] cred = UTF8Encoding.UTF8.GetBytes("psubrahmanya:Gonikoppal@1234");
+                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(cred));
+                            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                            System.Net.Http.Formatting.MediaTypeFormatter jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
+                            System.Net.Http.HttpContent content = new System.Net.Http.ObjectContent<Comment>(data, jsonFormatter);
+                            System.Net.Http.HttpResponseMessage response = client.PostAsync("comment", content).Result;
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string result = response.Content.ReadAsStringAsync().Result;
+                                Console.Write(result);
+                            }
+                            else
+                            {
+                                Console.Write(response.StatusCode.ToString());
+                                Console.ReadLine();
+                            }
+
+                            break;
+                        }
+
+                    }
 
                 }
-
             }
-
         }
 
     }

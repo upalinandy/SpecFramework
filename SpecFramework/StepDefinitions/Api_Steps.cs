@@ -92,7 +92,6 @@ namespace SpecFrame.StepDefinitionFiles
                 Assert.AreEqual(location.lng.ToString(), exp_lng);
           
                 latestexecuttext = "#Last Execution Passed on: "+timestamp;
-                comment.addComment(bugsummary,latestexecuttext);
             //    ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag);
 
             }
@@ -101,7 +100,6 @@ namespace SpecFrame.StepDefinitionFiles
                 bugcreateflag = true;
        
                 latestexecuttext = "#Last Execution Failed on: "+timestamp;
-                comment.addComment(bugsummary, latestexecuttext);
                 exceptiontext = ex.ToString();
                 throw ex;
             }
@@ -112,7 +110,8 @@ namespace SpecFrame.StepDefinitionFiles
                   bugstate =   bug.create(bugsummary, exceptiontext);
                   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname,bugstate);
                 }
-                  ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
+                comment.addComment(bugsummary, latestexecuttext);
+                ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
             }
 
 
