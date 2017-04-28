@@ -125,8 +125,11 @@
     <Compile Include="Jira\JiraBug\AddJiraComment.cs" />
     <Compile Include="Jira\JiraBug\BugCreate.cs" />
     <Compile Include="Jira\JiraBug\BugStatus.cs" />
+    <Compile Include="Jira\JiraBug\FetchBugCreationResolutionDate.cs" />
     <Compile Include="Jira\JiraBug\JiraTicketKeyIssue.cs" />
     <Compile Include="Jira\JiraBug\JiraTimeStamp.cs" />
+    <Compile Include="Jira\JiraChangeLogApi\fields2.cs" />
+    <Compile Include="Jira\JiraChangeLogApi\RootObject2.cs" />
     <Compile Include="Jira\JiraNewFeature\NewFeatureCreate.cs" />
     <Compile Include="Jira\JiraUserStory\UserStoryCreate.cs" />
     <Compile Include="ProjectLibs\API\GoogleAPI\AddressComponent.cs" />
