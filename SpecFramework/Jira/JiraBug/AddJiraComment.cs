@@ -35,7 +35,6 @@ namespace SpecFramework.Jira.JiraBug
             foreach (var issue in issues)
             {
                 var fields = issue.fields;
-                Console.WriteLine("fields:" + fields);
                 var summary = (fields.summary).ToString();
                 state = (fields.status.name).ToString();
                 issuetype = (fields.issuetype.name).ToString();

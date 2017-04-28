@@ -2,6 +2,7 @@
 using SpecFramework.ActionClasses;
 using SpecFramework.FeatureFilePath;
 using SpecFramework.GlobalParam;
+using SpecFramework.Jira.JiraApi;
 using SpecFramework.Jira.JiraBug;
 using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
@@ -25,6 +26,7 @@ namespace SpecFramework.StepDefinitions
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
+        BugState bugstate = new BugState();
 
 
         [Given(@"User is at homepage (.*)")]
@@ -62,7 +64,7 @@ namespace SpecFramework.StepDefinitions
             {
                if (bugcreateflag == true)
                 {
-                  bug.create(bugsummary, exceptiontext);
+                  bug.create(bugsummary, exceptiontext,bugstate);
                 }
             }
         }
@@ -85,7 +87,7 @@ namespace SpecFramework.StepDefinitions
             {
                 if (bugcreateflag == true)
                 {
-                    bug.create(bugsummary, exceptiontext);
+                    bug.create(bugsummary, exceptiontext,bugstate);
                 }
             }
         }
@@ -115,7 +117,7 @@ namespace SpecFramework.StepDefinitions
             {
                 if (bugcreateflag == true)
                 {
-                    bug.create(bugsummary, exceptiontext);
+                    bug.create(bugsummary, exceptiontext, bugstate);
                 }
             }
         }

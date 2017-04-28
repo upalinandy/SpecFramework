@@ -30,6 +30,7 @@ namespace SpecFrame.StepDefinitionFiles
 
         BugCreate bug = new BugCreate();
         AddJiraComment comment = new AddJiraComment();
+        BugStatus bugstatus = new BugStatus();
     
         string exceptiontext = null;
         string bugsummary = null;
@@ -92,13 +93,11 @@ namespace SpecFrame.StepDefinitionFiles
                 Assert.AreEqual(location.lng.ToString(), exp_lng);
           
                 latestexecuttext = "#Last Execution Passed on: "+timestamp;
-            //    ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag);
-
+           
             }
             catch (Exception ex)
             {
-                bugcreateflag = true;
-       
+                bugcreateflag = true;    
                 latestexecuttext = "#Last Execution Failed on: "+timestamp;
                 exceptiontext = ex.ToString();
                 throw ex;
@@ -107,11 +106,22 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 if (bugcreateflag)
                 {
-                  bugstate =   bug.create(bugsummary, exceptiontext);
+                    //test april 26
+                   // bugsummary = "Google api test does not give correct result";
+                    bugstate.nobugcreated = false;
+                    bugstate.bugcreateflag = true;
+                    bugstate =   bug.create(bugsummary, exceptiontext, bugstate);
                   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname,bugstate);
                 }
-                comment.addComment(bugsummary, latestexecuttext);
-                ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag); 
+                else
+                {
+                    Console.WriteLine("Bug Closed and Test case passed Upali");
+                    bugstate = bugstatus.check(featureFilePath,bugsummary, scenarioname, bugstate);
+                 //   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname, bugstate);
+                }
+
+              comment.addComment(bugsummary, latestexecuttext);                
+              ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag,bugstate); 
             }
 
 

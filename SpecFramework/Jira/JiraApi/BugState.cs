@@ -11,5 +11,14 @@ namespace SpecFramework.Jira.JiraApi
         public bool bugclosed = false;
         public bool bugexists = false;
         public bool bugopen = false;
+        public bool nobugcreated = true;
+        public string oldclosedtkyKey = "";
+        public string newclosedtkyKey = "";
+        public string reopentktkey = "";
+        public string newopentktkey = "";
+        public bool openedafterclosedflag = false;
+        public int bugclosedcount = 0;
+        public List<string> buglist = new List<string>();
+        public bool bugcreateflag = false;
     }
 }

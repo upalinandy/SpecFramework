@@ -18,17 +18,10 @@ namespace SpecFramework.Jira.JiraBug
     public class JiraTimeStamp
     {
 
-        public void update(string featurpath, string bugSummary, string scenarioName, string lastex, bool bugcreateflag)
+        public void update(string featurpath, string bugSummary, string scenarioName, string lastex, bool bugcreateflag, BugState bg)
         {
             List<string> Text = File.ReadAllLines(featurpath).ToList();
-            //    string keyToInsert = "#" + tktkey;
-            //    string trimmedText = keyToInsert.Remove(7);
-            /*     if (Text.Contains(keyToInsert))
-                 {
-                     Console.WriteLine("Key already exists");
-                 }*/
-            //    else
-            //    {
+
             Console.WriteLine("Now Begins JIRA TIME STAMP");
             int length = scenarioName.Length;
             int index = Text.FindIndex(x => x.Contains(scenarioName));
@@ -39,14 +32,72 @@ namespace SpecFramework.Jira.JiraBug
             Console.WriteLine("Then Text at index + 2 :" + Text[index]);
             
             string a = Text[index];
-            Console.WriteLine("a: " + a+ "index"+ index);
+            Console.WriteLine("a: " + a+ " index: "+ index);
             if (a.Contains("#SFLOW"))
             {
                 Console.WriteLine("now inside #SFLOW :" + index);
-                //Text.Remove(a);
-                Console.WriteLine("Text at index+1 : " + Text[index + 1]);
-                Text.RemoveAt(index + 1);
-                Text.Insert((index+1), lastex);
+                Console.WriteLine("bugclosed :" + bg.bugclosed);
+                Console.WriteLine("bugexists :" + bg.bugexists);
+                Console.WriteLine("bugopen :" + bg.bugopen);
+                Console.WriteLine("nobugcreated :" + bg.nobugcreated);
+                Console.WriteLine("reopentktkey :" + bg.reopentktkey);
+                Console.WriteLine("newopentktkey :" + bg.newopentktkey);
+                Console.WriteLine("openedafterclosedflag :" + bg.openedafterclosedflag);
+                Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
+                int newindex = index + 1;
+                Console.WriteLine("new index: " + newindex);
+                string b = Text[newindex];
+                Console.WriteLine("b contains: " + b);
+             if (bg.bugclosedcount > 1)
+                {
+                 if (bg.nobugcreated)
+                    {
+                        Console.WriteLine("Inside no bug is created");
+                        Console.WriteLine("JIra timestamp, under if sflow, if bugcount > 1, if nobugcreated");
+                        //april 27
+                        int indexofscenarioname = index - 2; 
+                        int passfailindex = indexofscenarioname + 1 + bg.bugclosedcount +1 ;
+                        Console.WriteLine("indexofscenarioname :" + indexofscenarioname);
+                        Console.WriteLine("bugcount :" + bg.bugclosedcount);
+                        Console.WriteLine("passfailindex :" + passfailindex);
+                        Console.WriteLine("Text at passfailindex : " + Text[passfailindex]);
+                        Console.WriteLine("Text at: " + newindex + "is" + b);
+                        Text.RemoveAt(passfailindex);
+                        Text.Insert((passfailindex), lastex);
+                    }
+                else
+                    {
+                        Console.WriteLine("old closed bug :" + bg.buglist[1]);
+                        if (b.Contains(bg.reopentktkey))
+                        {
+                            Console.WriteLine("newindex +1 : " + (newindex + 1));
+                            Console.WriteLine("lastex : " + lastex);
+                            Console.WriteLine("JIra timestamp, under if sflow, if bugcount >1, if b.contains reopenkey");
+                            Text.Insert((newindex + 1), lastex);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Inside ELSE no bug is created");
+                            int indexofscenarioname = index - 2;
+                            int passfailindex = indexofscenarioname + 1 + bg.bugclosedcount + 1;
+                            Console.WriteLine("indexofscenarioname :" + indexofscenarioname);
+                            Console.WriteLine("bugcount :" + bg.bugclosedcount);
+                            Console.WriteLine("passfailindex :" + passfailindex);
+                            Console.WriteLine("Text at passfailindex : " + Text[passfailindex]);
+                            Console.WriteLine("Text at: " + newindex + "is" + b);
+                            Text.RemoveAt(passfailindex);
+                            Text.Insert((passfailindex), lastex);
+
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("JIra timestamp, under if sflow, else bugcount > 1");
+                    Console.WriteLine("Text at: " + newindex + "is" + b);
+                    Text.RemoveAt(newindex);
+                    Text.Insert((newindex), lastex);
+                }
             }
 
            else if (a.Contains("Given"))
@@ -56,14 +107,14 @@ namespace SpecFramework.Jira.JiraBug
                 Console.WriteLine("b contains: " + b);
                 if (b.Contains("Passed"))
                 {
-                    Text.RemoveAt(newindex);
-                    Text.Insert(newindex, lastex);
-
+                  Text.RemoveAt(newindex);
+                  Text.Insert(newindex, lastex);
                 }
-                else {
-                    Console.WriteLine("bugcreateflag :" + bugcreateflag);
-                    Console.WriteLine("now inside given :" + index);
-                    Text.Insert(index, lastex);
+                else
+                {
+                  Console.WriteLine("bugcreateflag :" + bugcreateflag);
+                  Console.WriteLine("now inside given :" + index);
+                  Text.Insert(index, lastex);
                 }
                
             }

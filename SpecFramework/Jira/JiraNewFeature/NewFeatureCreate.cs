@@ -29,8 +29,6 @@ namespace SpecFramework.Jira.JiraNewFeature
             //Checking whether the new feature already exists, if true, do not create a new ticket 
             HttpClient client1 = new HttpClient();
             string Apiurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=description&fields=summary");
-            // var credentials = Encoding.ASCII.GetBytes(JiraUserName + ":" + JiraPassword);
-          //  var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
             var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
             client1.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));
             Uri uri = new Uri(Apiurl.ToString());

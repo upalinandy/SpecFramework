@@ -13,7 +13,7 @@ namespace SpecFramework.Jira.JiraBug
 {
     public class BugCreate
     {
-        public BugState create(string bugsummary, string errordetails)
+        public BugState create(string bugsummary, string errordetails, BugState bg)
         {
             string tktID = null;
             string tkyKey = null;
@@ -23,21 +23,16 @@ namespace SpecFramework.Jira.JiraBug
             string closedtktID = null;
             string closedtkyKey = null;        
            
-            BugState bg = new BugState();
-            // bool bugclosed = false;
-            // bool bugexists = false;
-          //  bool bugopen = false;
+         //   BugState bg = new BugState();
             bg.bugclosed = false;
             bg.bugexists = false;
             bg.bugopen = false;
 
-            //Checking whether the user story already exists, if true, do not create a new ticket 
+            //Checking whether the Bug already exists, if true, do not create a new ticket 
             HttpClient client2 = new HttpClient();
-            //   string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary");
-            //   string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status");
+
             string issueurl = ("https://spiderlogic.jira.com/rest/api/2/search?jql=project=SFLOW&fields=issues&fields=summary&fields=description&fields=status&fields=project&fields=issuetype");
 
-            // var credentials = Encoding.ASCII.GetBytes("psubrahmanya:Gonikoppal@1234");
             var credentials = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
             client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials));
             Uri uri = new Uri(issueurl.ToString());
@@ -93,6 +88,8 @@ namespace SpecFramework.Jira.JiraBug
                                 Console.WriteLine("In BugCreate: Bug closed and ALSO REOPENED");
                                 bg.bugexists = true;
                                 bg.bugclosed = true;
+                                bg.bugclosedcount = bg.bugclosedcount + 1;
+                                bg.buglist.Add(closedtkyKey);
 
                             }
                             else
@@ -100,9 +97,10 @@ namespace SpecFramework.Jira.JiraBug
                                 Console.WriteLine("In BugCreate: Bug exists bug closed ");
                                 bg.bugexists = false;
                                 closedtktID = issue.id;
-                                closedtkyKey = issue.key;
-                                //bugclosed = true;
+                                closedtkyKey = issue.key;                  
                                 bg.bugclosed = true;
+                                bg.bugclosedcount = bg.bugclosedcount + 1;
+                                bg.buglist.Add(closedtkyKey);
                             }
                         }
                     }

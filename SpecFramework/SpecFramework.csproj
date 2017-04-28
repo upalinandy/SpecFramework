@@ -124,6 +124,7 @@
     <Compile Include="Jira\JiraApi\Status.cs" />
     <Compile Include="Jira\JiraBug\AddJiraComment.cs" />
     <Compile Include="Jira\JiraBug\BugCreate.cs" />
+    <Compile Include="Jira\JiraBug\BugStatus.cs" />
     <Compile Include="Jira\JiraBug\JiraTicketKeyIssue.cs" />
     <Compile Include="Jira\JiraBug\JiraTimeStamp.cs" />
     <Compile Include="Jira\JiraNewFeature\NewFeatureCreate.cs" />
