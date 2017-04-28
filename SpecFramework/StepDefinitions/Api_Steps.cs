@@ -35,7 +35,6 @@ namespace SpecFrame.StepDefinitionFiles
         string exceptiontext = null;
         string bugsummary = null;
         bool bugcreateflag = false;
-       // bool bugclosed =false;
         BugState bugstate = new BugState();
 
 
@@ -106,8 +105,6 @@ namespace SpecFrame.StepDefinitionFiles
             {
                 if (bugcreateflag)
                 {
-                    //test april 26
-                   // bugsummary = "Google api test does not give correct result";
                     bugstate.nobugcreated = false;
                     bugstate.bugcreateflag = true;
                     bugstate =   bug.create(bugsummary, exceptiontext, bugstate);
@@ -117,8 +114,7 @@ namespace SpecFrame.StepDefinitionFiles
                 {
                     Console.WriteLine("Bug Closed and Test case passed Upali");
                     bugstate = bugstatus.check(featureFilePath,bugsummary, scenarioname, bugstate);
-                 //   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname, bugstate);
-                }
+                 }
 
               comment.addComment(bugsummary, latestexecuttext);                
               ts.update(featureFilePath, bugsummary, scenarioname, latestexecuttext, bugcreateflag,bugstate); 
