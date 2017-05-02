@@ -55,15 +55,32 @@ namespace SpecFramework.Jira.JiraBug
                         Console.WriteLine("Inside no bug is created");
                         Console.WriteLine("JIra timestamp, under if sflow, if bugcount > 1, if nobugcreated");
                         //april 27
-                        int indexofscenarioname = index - 2; 
-                        int passfailindex = indexofscenarioname + 1 + bg.bugclosedcount +1 ;
-                        Console.WriteLine("indexofscenarioname :" + indexofscenarioname);
-                        Console.WriteLine("bugcount :" + bg.bugclosedcount);
-                        Console.WriteLine("passfailindex :" + passfailindex);
-                        Console.WriteLine("Text at passfailindex : " + Text[passfailindex]);
-                        Console.WriteLine("Text at: " + newindex + "is" + b);
-                        Text.RemoveAt(passfailindex);
-                        Text.Insert((passfailindex), lastex);
+                        int indexofscenarioname = index - 2;
+                        //open and closed tickets are there and the test case passes/fails
+                        if ((bg.bugexists) || (bg.openedafterclosedflag || bg.bugopen))
+                        {
+                            int passfailindex = indexofscenarioname + 1 + bg.bugclosedcount + 1;
+                            Console.WriteLine("indexofscenarioname :" + indexofscenarioname);
+                            Console.WriteLine("bugcount :" + bg.bugclosedcount);
+                            Console.WriteLine("passfailindex :" + passfailindex);
+                            Console.WriteLine("Text at passfailindex : " + Text[passfailindex]);
+                            Console.WriteLine("Text at: " + newindex + "is" + b);
+                            Text.RemoveAt(passfailindex);
+                            Text.Insert((passfailindex), lastex);
+                        }
+                        //only closed tickets are there and the test case passes/fails
+                        else
+                        {
+                            int passfailindex = indexofscenarioname + 0 + bg.bugclosedcount + 1;
+                            Console.WriteLine("indexofscenarioname :" + indexofscenarioname);
+                            Console.WriteLine("bugcount :" + bg.bugclosedcount);
+                            Console.WriteLine("passfailindex :" + passfailindex);
+                            Console.WriteLine("Text at passfailindex : " + Text[passfailindex]);
+                            Console.WriteLine("Text at: " + newindex + "is" + b);
+                            Text.RemoveAt(passfailindex);
+                            Text.Insert((passfailindex), lastex);
+
+                        }
                     }
                 else
                     {

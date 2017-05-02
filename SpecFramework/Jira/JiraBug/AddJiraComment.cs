@@ -29,8 +29,9 @@ namespace SpecFramework.Jira.JiraBug
             string ApiResponse = client2.GetStringAsync(uri).Result;
             var root = JsonConvert.DeserializeObject<RootObject>(ApiResponse);
 
+            Console.WriteLine("Inside Add Comment");
             //Checking if the issue exists by iterating through the issue list in jira
-             var issues = root.issues;
+            var issues = root.issues;
 
             foreach (var issue in issues)
             {

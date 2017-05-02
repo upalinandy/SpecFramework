@@ -55,21 +55,20 @@ namespace SpecFramework.Jira.JiraBug
                 issuetype = (fields.issuetype.name).ToString();
                 Console.WriteLine("issuetype:" + issuetype);
 
-                if (issuetype == "Bug")
-                {
-                    if (summary.Equals(bugsummary))
-                    {
-                        Console.WriteLine("state :" + state);
-                        if (state == "Open")
-                        {
+       
+           if ((issuetype == "Bug") & summary.Equals(bugsummary))
+               {
+                       
+                  if (state == "Open")
+                      {
                             // the control may not go to if block ever
-                            if (bg.bugclosed)
+                         if (bg.bugclosed)
                             {
-                                Console.WriteLine("In BugCreate: Bug OPened after closed ");
-                                bg.bugexists = true;
-                                Console.WriteLine("Ticket Key: " + issue.key);
+                               Console.WriteLine("In BugCreate: Bug OPened after closed ");
+                               bg.bugexists = true;
+                               Console.WriteLine("Ticket Key: " + issue.key);
                             }
-                            else
+                          else
                             {
                                 Console.WriteLine("In BugCreate : Bug exists");
                                 bg.bugexists = true;
@@ -77,11 +76,10 @@ namespace SpecFramework.Jira.JiraBug
                                 tkyKey = issue.key;
                                 Console.WriteLine("Ticket Key: " + issue.key);
                                 bg.bugopen = true;
-
-
                             }
                         }
-                        else if (state == "Closed")
+
+                  else if (state == "Closed")
                         {
                             if (bg.bugopen)
                             {
@@ -103,16 +101,11 @@ namespace SpecFramework.Jira.JiraBug
                                 bg.buglist.Add(closedtkyKey);
                             }
                         }
-                    }
-                }
-                else
-                {
-                    continue;
-                }
+                    }              
              
             }
 
-            //If the user story does not exist, create a new user story by using the POST method in JIRA via API
+            //If the Bug not exist, create a new user story by using the POST method in JIRA via API
             if (bg.bugexists == false)
             {
                 //The fields required to create a new JIRA ticket

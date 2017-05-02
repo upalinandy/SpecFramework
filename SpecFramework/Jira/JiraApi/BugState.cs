@@ -15,7 +15,7 @@ namespace SpecFramework.Jira.JiraApi
         public string oldclosedtkyKey = "";
         public string newclosedtkyKey = "";
         public string reopentktkey = "";
-        public string newopentktkey = "";
+        public string newopentktkey = "nonewkey";      
         public bool openedafterclosedflag = false;
         public int bugclosedcount = 0;
         public List<string> buglist = new List<string>();

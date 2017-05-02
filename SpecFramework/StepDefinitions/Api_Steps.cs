@@ -117,7 +117,7 @@ namespace SpecFrame.StepDefinitionFiles
                 {
                     Console.WriteLine("Bug Closed and Test case passed Upali");
                     bugstate = bugstatus.check(featureFilePath,bugsummary, scenarioname, bugstate);
-                 //   key.getJiraTicketId(featureFilePath, bugsummary, scenarioname, bugstate);
+                 
                 }
 
               comment.addComment(bugsummary, latestexecuttext);                

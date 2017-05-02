@@ -47,14 +47,12 @@ namespace SpecFramework.Jira.JiraBug
             var root = JsonConvert.DeserializeObject<RootObject>(ApiResponse);
             var issues = root.issues;
 
-            foreach (var item in issues)
-            {
+    foreach (var item in issues)
+          {
                 summary = (item.fields.summary).ToString();
                 Console.WriteLine("in Jiraticket: status " + item.fields.status.name);
 
-                if (item.fields.issuetype.name == "Bug")
-                {
-                    if (item.fields.summary == bugSummary & item.fields.status.name == "Closed")
+          if ((item.fields.issuetype.name == "Bug") & (item.fields.summary == bugSummary) & (item.fields.status.name == "Closed"))
                     {
                         Console.WriteLine("This is the most important step : In Jiraticket Closed");
                         closedflag = true;
@@ -62,13 +60,13 @@ namespace SpecFramework.Jira.JiraBug
                         closedtktkey = item.key;
                         break;
                     }
-                    else if (item.fields.summary == bugSummary & item.fields.status.name == "Open")
+
+           else if ((item.fields.issuetype.name == "Bug") & (item.fields.summary == bugSummary) & (item.fields.status.name == "Open"))
                     {
                         if (bg.bugclosed)
                         {
                             Console.WriteLine("Bazooka : In Jiraticket BUG CLOSED AND REOPENED");
-                            //continue;
-                            //testing
+
                             opentktID = item.id;
                             opentktkey = item.key;
                             openedafterclosedflag = true;
@@ -85,12 +83,8 @@ namespace SpecFramework.Jira.JiraBug
                             break;
                         }
                     }
-                }
-                else
-                {
-                    continue;
-                }
             }
+
 
             //if closed ticket workflow when a new bug ticket is created
             if (closedflag && (bg.nobugcreated == false))
@@ -122,20 +116,12 @@ namespace SpecFramework.Jira.JiraBug
 
 
 
-            //Writing into the Feature file
-            if (openedafterclosedflag)
+    //Writing into the Feature file
+         if (openedafterclosedflag)
             {
                 Console.WriteLine("Bazooka : In Jiraticket if openedafterclosed writing intofeature");
-                Console.WriteLine("bugclosed :" + bg.bugclosed);
-                Console.WriteLine("bugexists :" + bg.bugexists);
-                Console.WriteLine("bugopen :" + bg.bugopen);
-                Console.WriteLine("nobugcreated :" + bg.nobugcreated);
-                Console.WriteLine("reopentktkey :" + bg.reopentktkey);
-                Console.WriteLine("newopentktkey :" + bg.newopentktkey);
-                Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
-
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + opentktkey + " Opened " + timestamp;
+                keyToInsert = "#" + opentktkey + " Opened on " + timestamp;
                 Console.WriteLine("Text: " + Text);
                 Console.WriteLine("keyToInsert: " + keyToInsert);
                 bg.reopentktkey = opentktkey;
@@ -150,66 +136,25 @@ namespace SpecFramework.Jira.JiraBug
                     Console.WriteLine("Key does not exist and will write into the feature file");
                     int length = scenarioName.Length;
                     int index = Text.FindIndex(x => x.Contains(scenarioName));
-                    // index = index + 2;
-                    // april 25
+
                     index = index + 1;
 
                     string a = Text[index];
                     Console.WriteLine("a contains: " + a);
                     Console.WriteLine("trimmedtext contains: " + trimmedText);
-                    Console.WriteLine("index +1: " + index);
                     Text.RemoveAt(index);
                     Text.Insert(index, keyToInsert);
-                    System.IO.File.WriteAllLines(featurpath, Text);
-
-                    /*   if (a.Contains(trimmedText))
-                       {
-                           Console.WriteLine("in if a.contains");
-                           Console.WriteLine("index +2: " + index);
-                           Text.Remove(a);
-                           Text.Insert(index, keyToInsert);
-                           System.IO.File.WriteAllLines(featurpath, Text);
-                       }
-                       else
-                       {
-                           if (bg.bugclosedcount > 1)
-                           {
-                               Console.WriteLine("old closed bug :" + bg.buglist[1]);
-                               if (a.Contains(bg.buglist[1]))
-                               {
-                                   Console.WriteLine("in if bugclosed >1 and a.comtains old bug");
-                                   Console.WriteLine("new index  " + index + 1);
-                                   Text.Insert(index + 1, keyToInsert);
-                                   System.IO.File.WriteAllLines(featurpath, Text);
-
-                               }
-                           }
-                           else
-                           {
-                               Console.WriteLine("in else a.contains");
-                               Console.WriteLine("index +2: " + index);
-                               Text.Insert(index, keyToInsert);
-                               System.IO.File.WriteAllLines(featurpath, Text);
-                           }
-                       }*/
+                    System.IO.File.WriteAllLines(featurpath, Text);                
                 }
             }
-            if (closedflag)
+
+        if (closedflag)
             {
                 Console.WriteLine("Bazooka : In Jiraticket if closedflag writing intofeature");
                 Console.WriteLine("Upali ClosedKey: " + closedtktkey);
-                Console.WriteLine("bugclosed :" + bg.bugclosed);
-                Console.WriteLine("bugexists :" + bg.bugexists);
-                Console.WriteLine("bugopen :" + bg.bugopen);
-                Console.WriteLine("nobugcreated :" + bg.nobugcreated);
-                //          Console.WriteLine("new closed bug :" + bg.buglist[0]);
-                //  Console.WriteLine("old closed bug :" + bg.buglist[1]);
-                Console.WriteLine("reopentktkey :" + bg.reopentktkey);
-                Console.WriteLine("newopentktkey :" + bg.newopentktkey);
-                Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
 
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + closedtktkey + " Closed " + timestamp;
+                keyToInsert = "#" + closedtktkey + " Closed on " + timestamp;
                 trimmedText = keyToInsert.Remove(7);
 
                 int length = scenarioName.Length;
@@ -227,20 +172,23 @@ namespace SpecFramework.Jira.JiraBug
                         Console.WriteLine("Do Nothing");
                     }
              
-                    //april 26 test
-                    else if (bg.bugclosedcount >= 1)
+             //april 26 test
+                  else if (bg.bugclosedcount >= 1)
                     {
                         if (bg.nobugcreated)
                         {
-                            Console.WriteLine("Inside nobugcreated");
+                            Console.WriteLine("Inside nobugcreated");                        
                             int newindex = index - 1;
                             string b = Text[newindex];
+
+                            //april 28
+                            Console.WriteLine("b contains: " + b);
+
                             if (b.Contains("Opened"))
                             {
                                 Console.WriteLine("Inside nobugcreated and if b contains Opened");
                                 Console.WriteLine("Key to insert: " + keyToInsert);
                                 Text.Remove(b);
-                                //    Text.RemoveAt(newindex);
                                 Text.Insert(newindex, keyToInsert);
                                 System.IO.File.WriteAllLines(featurpath, Text);
                             }
@@ -301,7 +249,7 @@ namespace SpecFramework.Jira.JiraBug
                 Console.WriteLine("Bazooka : In Jiraticket if opened new writing intofeature");
 
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + tktkey + " Opened " + timestamp;
+                keyToInsert = "#" + tktkey + " Opened on " + timestamp;
                 Console.WriteLine("Text: " + Text);
                 Console.WriteLine("keyToInsert: " + keyToInsert);
                 trimmedText = keyToInsert.Remove(7);

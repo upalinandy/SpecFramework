@@ -47,10 +47,6 @@ namespace SpecFramework.Jira.JiraBug
         var summary = (fields.summary).ToString();
         state = (fields.status.name).ToString();
         issuetype = (fields.issuetype.name).ToString();
-        Console.WriteLine("issuetype: " + issuetype);
-        Console.WriteLine("bugsummary: " + bugsummary);
-        Console.WriteLine("State: " + state);
-
 
                 if ((issuetype == "Bug") && summary.Equals(bugsummary) && (state == "Open"))
                 {
@@ -70,7 +66,7 @@ namespace SpecFramework.Jira.JiraBug
                         bg.newopentktkey = issue.key;
                         Console.WriteLine("Ticket Key: " + issue.key);
                         bg.bugopen = true;
-                       // bg.openedafterclosedflag = true;
+                      
                     }
                 }
                 else if ((issuetype == "Bug") && summary.Equals(bugsummary) && (state == "Closed"))
@@ -133,7 +129,7 @@ namespace SpecFramework.Jira.JiraBug
             }
             if (closedflag)
             {
-                Console.WriteLine("Bazooka : In Jiraticket if closedflag writing intofeature");
+                Console.WriteLine("In Bugstatus: if closedflag writing intofeature");
                 Console.WriteLine("Upali ClosedKey: " + closedtktkey);
                 Console.WriteLine("bugclosed :" + bg.bugclosed);
                 Console.WriteLine("bugexists :" + bg.bugexists);
@@ -144,11 +140,16 @@ namespace SpecFramework.Jira.JiraBug
                 Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
                 //april 27 testing
                 string newclosedkey = bg.buglist[bg.bugclosedcount-1];
+                
+                Console.WriteLine("bg.buglist[bg.bugclosedcount-1] :" + bg.buglist[bg.bugclosedcount - 1]);
+                Console.WriteLine("bg.buglist[0] :" + bg.buglist[0]);
+        //        Console.WriteLine("bg.buglist[1] :" + bg.buglist[1]);
+                Console.WriteLine("newclosedkey :" + newclosedkey);
 
                 Text = File.ReadAllLines(featurpath).ToList();
 
                 //april 27
-                keyToInsert = "#" + newclosedkey + " Closed " + timestamp;
+                keyToInsert = "#" + newclosedkey + " Closed on " + timestamp;
                 trimmedText = keyToInsert.Remove(7);
 
                 int length = scenarioName.Length;
@@ -157,8 +158,8 @@ namespace SpecFramework.Jira.JiraBug
                 // index = index + 2;
                int newindex = index + 1;
                string a = Text[newindex];
-               Console.WriteLine("In JIRA KEY TICKET, under closed Flag: a contains" + a);
-               Console.WriteLine("In JIRA KEY TICKET, under closed Flag: Trimmed Text contains :" + trimmedText);
+               Console.WriteLine("In Bug Status, under closed Flag: a contains" + a);
+               Console.WriteLine("In Bug Status, under closed Flag: Trimmed Text contains :" + trimmedText);
                 if (a.Contains(trimmedText))
                 {
                     if (bg.bugclosedcount == 0)
@@ -169,33 +170,55 @@ namespace SpecFramework.Jira.JiraBug
                     //april 26 test
                     else if ((bg.bugclosedcount >= 1))
                     {
-                       if (bg.nobugcreated)
+                      if (bg.nobugcreated)
                         {
-                          Console.WriteLine("Inside nobugcreated");
-                            if ((a.Contains("Opened")) && (a.Contains(bg.newopentktkey)))
+                          Console.WriteLine("Inside nobugcreated and bug count >=1");
+                          Console.WriteLine("a contains: " + a);
+                          Console.WriteLine("bg.newopentktkey: " + bg.newopentktkey);
+                            Console.WriteLine("newindex: " + newindex);
+                          Console.WriteLine("KeytoInsert: " + keyToInsert);
+                        if (a.Contains("Opened"))
                             {
-                                int closeindex = newindex + 1;
-                                Text.RemoveAt(closeindex);
-                                Text.Insert(closeindex, keyToInsert);
-
-                            }
-                            else 
-                            {
-                                Console.WriteLine("Inside nobugcreated and if b contains Opened");
+                                Console.WriteLine("Inside Opened");
+                                if (a.Contains(bg.newopentktkey))
+                                    {
+                                      int closeindex = newindex + 1;
+                                      Text.RemoveAt(closeindex);
+                                      Text.Insert(closeindex, keyToInsert);
+                                    }
+                                else
+                                   {
+                                    Console.WriteLine("Inside nobugcreated and if a contains Opened, else newopentktkey");
+                                    // when there are only closed keys 2nd may
+                                    string updatedclosedkey = bg.buglist[0];
+                                    keyToInsert = "#" + updatedclosedkey + " Closed " + timestamp;
+                                    Console.WriteLine("Key to insert: " + keyToInsert);
+                                   // Text.Remove(a);
+                                      Text.RemoveAt(newindex);
+                                    Text.Insert(newindex, keyToInsert);
+                                    System.IO.File.WriteAllLines(featurpath, Text);
+                                   }
+                               }
+                        else 
+                             {
+                                Console.WriteLine("Inside nobugcreated and else a contains Opened");
+                                // when there are only closed keys 2nd may
+                                string updatedclosedkey = bg.buglist[0];
+                                keyToInsert = "#" + updatedclosedkey + " Closed on " + timestamp;
                                 Console.WriteLine("Key to insert: " + keyToInsert);
-                                Text.Remove(a);
-                                //    Text.RemoveAt(newindex);
+                               // Text.Remove(a);
+                                Text.RemoveAt(newindex);
                                 Text.Insert(newindex, keyToInsert);
                                 System.IO.File.WriteAllLines(featurpath, Text);
-                            }
+                             }
                         }
-                        else
-                        {
-                            Console.WriteLine("old closed bug :" + bg.buglist[1]);
-                            Console.WriteLine("inside if a.contains(trimmedtext) and if bugcount > 1");
-                            Text.Insert(index, keyToInsert);
-                            System.IO.File.WriteAllLines(featurpath, Text);
-                        }
+                      else
+                         {
+                           Console.WriteLine("old closed bug :" + bg.buglist[1]);
+                           Console.WriteLine("inside if a.contains(trimmedtext) and if bugcount > 1");
+                           Text.Insert(index, keyToInsert);
+                           System.IO.File.WriteAllLines(featurpath, Text);
+                         }
                     }
                     else
                     {
