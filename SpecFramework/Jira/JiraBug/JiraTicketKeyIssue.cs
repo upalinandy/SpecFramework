@@ -129,7 +129,7 @@ namespace SpecFramework.Jira.JiraBug
 
                 bg = bc.fetchBugCreatedClosedDate(bg);
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + opentktkey + " Opened " + bg.bugcreationdate;
+                keyToInsert = "#" + opentktkey + " Opened on: " + bg.bugcreationdate;
                 Console.WriteLine("Text: " + Text);
                 Console.WriteLine("keyToInsert: " + keyToInsert);
                 bg.reopentktkey = opentktkey;
@@ -164,7 +164,7 @@ namespace SpecFramework.Jira.JiraBug
 
                 bg = bc.fetchBugCreatedClosedDate(bg);
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + closedtktkey + " Closed " + bg.bugcloseddate;
+                keyToInsert = "#" + closedtktkey + " Closed on: " + bg.bugcloseddate;
                 trimmedText = keyToInsert.Remove(7);
 
                 int length = scenarioName.Length;
@@ -253,7 +253,7 @@ namespace SpecFramework.Jira.JiraBug
               Console.WriteLine("Bazooka : In Jiraticket if opened new writing intofeature");
               Text = File.ReadAllLines(featurpath).ToList();
                 bg = bc.fetchBugCreatedClosedDate(bg);
-                keyToInsert = "#" + tktkey + " Opened " + bg.bugcreationdate;
+                keyToInsert = "#" + tktkey + " Opened on: " + bg.bugcreationdate;
               Console.WriteLine("Text: " + Text);
               Console.WriteLine("keyToInsert: " + keyToInsert);
              trimmedText = keyToInsert.Remove(7);

@@ -75,9 +75,11 @@ namespace SpecFramework.Jira.JiraBug
                         Console.WriteLine("In BugStatus: Bug exists bug closed ");
                         Console.WriteLine("In Bug Status:This is the most important step ");
                         closedflag = true;
+                        bg.closedflag = true;
                         bg.bugexists = false;
                         closedtktID = issue.id;
                         closedtktkey = issue.key;
+                        bg.closedtkyKey = issue.key;
                         bg.bugclosed = true;
                         bg.nobugcreated = true;
                         bg.bugclosedcount = bg.bugclosedcount + 1;
@@ -86,24 +88,17 @@ namespace SpecFramework.Jira.JiraBug
                 }    
          }
 
+            //Get the creation/closed date of the bug
+            FetchBugCreationResolutionDate bc = new FetchBugCreationResolutionDate();
 
-
-  //Writing into the Feature file
+            //Writing into the Feature file
             if (bg.openedafterclosedflag)
             {
                 Console.WriteLine("Bazooka : In BugStatus if openedafterclosed writing intofeature");
-                Console.WriteLine("bugclosed :" + bg.bugclosed);
-                Console.WriteLine("bugexists :" + bg.bugexists);
-                Console.WriteLine("bugopen :" + bg.bugopen);
-                Console.WriteLine("nobugcreated :" + bg.nobugcreated);
-                Console.WriteLine("reopentktkey :" + bg.reopentktkey);
-                Console.WriteLine("newopentktkey :" + bg.newopentktkey);
-                Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
 
+                bg = bc.fetchBugCreatedClosedDate(bg);
                 Text = File.ReadAllLines(featurpath).ToList();
-                keyToInsert = "#" + bg.reopentktkey + " Opened " + timestamp;
-                Console.WriteLine("Text: " + Text);
-                Console.WriteLine("keyToInsert: " + keyToInsert);
+                keyToInsert = "#" + bg.reopentktkey + " Opened on: " + bg.bugcreationdate;
                 trimmedText = keyToInsert.Remove(10);
                 Console.WriteLine("trimmedText: " + trimmedText);
                 if (Text.Contains(keyToInsert))
@@ -130,36 +125,17 @@ namespace SpecFramework.Jira.JiraBug
             if (closedflag)
             {
                 Console.WriteLine("In Bugstatus: if closedflag writing intofeature");
-                Console.WriteLine("Upali ClosedKey: " + closedtktkey);
-                Console.WriteLine("bugclosed :" + bg.bugclosed);
-                Console.WriteLine("bugexists :" + bg.bugexists);
-                Console.WriteLine("bugopen :" + bg.bugopen);
-                Console.WriteLine("nobugcreated :" + bg.nobugcreated);
-                Console.WriteLine("reopentktkey :" + bg.reopentktkey);
-                Console.WriteLine("newopentktkey :" + bg.newopentktkey);
-                Console.WriteLine("bugclosedcount :" + bg.bugclosedcount);
-                //april 27 testing
                 string newclosedkey = bg.buglist[bg.bugclosedcount-1];
-                
-                Console.WriteLine("bg.buglist[bg.bugclosedcount-1] :" + bg.buglist[bg.bugclosedcount - 1]);
-                Console.WriteLine("bg.buglist[0] :" + bg.buglist[0]);
-        //        Console.WriteLine("bg.buglist[1] :" + bg.buglist[1]);
-                Console.WriteLine("newclosedkey :" + newclosedkey);
-
-                Text = File.ReadAllLines(featurpath).ToList();
-
-                //april 27
-                keyToInsert = "#" + newclosedkey + " Closed on " + timestamp;
+                bg.closedtkyKey = newclosedkey;
+               Text = File.ReadAllLines(featurpath).ToList();
+                bg = bc.fetchBugCreatedClosedDate(bg);
+                keyToInsert = "#" + newclosedkey + " Closed on: " + bg.bugcloseddate;
                 trimmedText = keyToInsert.Remove(7);
 
                 int length = scenarioName.Length;
                 int index = Text.FindIndex(x => x.Contains(scenarioName));
-                //april 26
-                // index = index + 2;
                int newindex = index + 1;
                string a = Text[newindex];
-               Console.WriteLine("In Bug Status, under closed Flag: a contains" + a);
-               Console.WriteLine("In Bug Status, under closed Flag: Trimmed Text contains :" + trimmedText);
                 if (a.Contains(trimmedText))
                 {
                     if (bg.bugclosedcount == 0)
@@ -167,16 +143,10 @@ namespace SpecFramework.Jira.JiraBug
                         Console.WriteLine("Do Nothing");
                     }
 
-                    //april 26 test
                     else if ((bg.bugclosedcount >= 1))
                     {
                       if (bg.nobugcreated)
                         {
-                          Console.WriteLine("Inside nobugcreated and bug count >=1");
-                          Console.WriteLine("a contains: " + a);
-                          Console.WriteLine("bg.newopentktkey: " + bg.newopentktkey);
-                            Console.WriteLine("newindex: " + newindex);
-                          Console.WriteLine("KeytoInsert: " + keyToInsert);
                         if (a.Contains("Opened"))
                             {
                                 Console.WriteLine("Inside Opened");
@@ -191,7 +161,9 @@ namespace SpecFramework.Jira.JiraBug
                                     Console.WriteLine("Inside nobugcreated and if a contains Opened, else newopentktkey");
                                     // when there are only closed keys 2nd may
                                     string updatedclosedkey = bg.buglist[0];
-                                    keyToInsert = "#" + updatedclosedkey + " Closed " + timestamp;
+                                    bg.closedtkyKey = updatedclosedkey;
+                                    bg = bc.fetchBugCreatedClosedDate(bg);
+                                    keyToInsert = "#" + updatedclosedkey + " Closed on: " + bg.bugcloseddate;
                                     Console.WriteLine("Key to insert: " + keyToInsert);
                                    // Text.Remove(a);
                                       Text.RemoveAt(newindex);
@@ -204,7 +176,9 @@ namespace SpecFramework.Jira.JiraBug
                                 Console.WriteLine("Inside nobugcreated and else a contains Opened");
                                 // when there are only closed keys 2nd may
                                 string updatedclosedkey = bg.buglist[0];
-                                keyToInsert = "#" + updatedclosedkey + " Closed on " + timestamp;
+                                bg.closedtkyKey = updatedclosedkey;
+                                bg = bc.fetchBugCreatedClosedDate(bg);
+                                keyToInsert = "#" + updatedclosedkey + " Closed on: " + bg.bugcloseddate;
                                 Console.WriteLine("Key to insert: " + keyToInsert);
                                // Text.Remove(a);
                                 Text.RemoveAt(newindex);
