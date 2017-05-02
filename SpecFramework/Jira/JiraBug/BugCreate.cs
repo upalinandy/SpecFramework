@@ -23,7 +23,6 @@ namespace SpecFramework.Jira.JiraBug
             string closedtktID = null;
             string closedtkyKey = null;        
            
-         //   BugState bg = new BugState();
             bg.bugclosed = false;
             bg.bugexists = false;
             bg.bugopen = false;
@@ -53,7 +52,6 @@ namespace SpecFramework.Jira.JiraBug
                  var summary = (fields.summary).ToString();
                 state = (fields.status.name).ToString();
                 issuetype = (fields.issuetype.name).ToString();
-                Console.WriteLine("issuetype:" + issuetype);
 
        
            if ((issuetype == "Bug") & summary.Equals(bugsummary))
@@ -97,6 +95,7 @@ namespace SpecFramework.Jira.JiraBug
                                 closedtktID = issue.id;
                                 closedtkyKey = issue.key;                  
                                 bg.bugclosed = true;
+                                bg.closedtkyKey = issue.key;
                                 bg.bugclosedcount = bg.bugclosedcount + 1;
                                 bg.buglist.Add(closedtkyKey);
                             }
@@ -123,7 +122,6 @@ namespace SpecFramework.Jira.JiraBug
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(cred));
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 System.Net.Http.Formatting.MediaTypeFormatter jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
-               // System.Net.Http.HttpContent content = new System.Net.Http.ObjectContent<Issue>(data, jsonFormatter);
                 System.Net.Http.HttpContent content = new System.Net.Http.ObjectContent<CreateIssue>(data, jsonFormatter);
                 System.Net.Http.HttpResponseMessage response = client.PostAsync("issue", content).Result;
 
