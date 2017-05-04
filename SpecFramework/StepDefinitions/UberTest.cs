@@ -97,6 +97,7 @@ namespace SpecFramework.StepDefinitions
         {
             Console.WriteLine("In when");
             UIActions.elementExists(ur.airbnb_login);
+            Console.WriteLine("title upali: " + UIActions.getTitle());
             UIActions.Click(ur.airbnb_login);
         }
 
