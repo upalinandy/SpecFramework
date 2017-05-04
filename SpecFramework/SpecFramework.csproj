@@ -104,7 +104,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GoogleApi.feature</DependentUpon>
     </Compile>
-    <Compile Include="FeatureFiles\RegisterXpo.feature.cs" />
     <Compile Include="FeatureFiles\Specflow_Excel_SampleTest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
