@@ -48,7 +48,10 @@ namespace SpecFramework.CommonUtils
                     break;
 
                 case BrowserType.Chrome:
-                    driver = GetChromeDriver();
+                  //  driver = GetChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.AddArgument("--start-maximized");
+                    driver = new ChromeDriver(chromeOptions);
                     break;
 
                 case BrowserType.IExplorer:
