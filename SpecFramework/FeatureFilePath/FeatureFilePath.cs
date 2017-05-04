@@ -13,9 +13,9 @@ namespace SpecFramework.FeatureFilePath
         {
             //    string ProjFolderPath = System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString();
             //works in visual studio
-           string pathForFeature = "..\\..\\SpecFramework\\SpecFramework\\FeatureFiles";
+     //      string pathForFeature = "..\\..\\SpecFramework\\SpecFramework\\FeatureFiles";
             //works in teamcity and console
-        //  string pathForFeature = "..\\..\\FeatureFiles";
+          string pathForFeature = "..\\..\\FeatureFiles";
             string filename = featureName + ".feature";
            // string[] filePaths = Directory.GetFiles(ProjFolderPath + pathForFeature, filename, SearchOption.AllDirectories);
             string[] filePaths = Directory.GetFiles(pathForFeature, filename, SearchOption.AllDirectories);
