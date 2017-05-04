@@ -96,6 +96,7 @@ namespace SpecFramework.StepDefinitions
         public void WhenUserClicksOnLogin()
         {
             Console.WriteLine("In when");
+            UIActions.elementExists(ur.airbnb_login);
             UIActions.Click(ur.airbnb_login);
         }
 
