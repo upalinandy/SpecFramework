@@ -96,16 +96,18 @@ namespace SpecFramework.StepDefinitions
         public void WhenUserClicksOnLogin()
         {
             Console.WriteLine("In when");
-            UIActions.waitFor(400);
-         //   UIActions.elementExists(ur.airbnb_login);
-            UIActions.elementExists(ur.becomeahost);
+    //        UIActions.waitFor(400);
+           UIActions.elementExists(ur.airbnb_login);
+     //       UIActions.elementExists(ur.becomeahost);
 
-            bool isdisplayed = UIActions.ElementDisplayed(ur.becomeahost);
+          //  bool isdisplayed = UIActions.ElementDisplayed(ur.becomeahost);
+            bool isdisplayed = UIActions.ElementDisplayed(ur.airbnb_login);
             Console.WriteLine("is it displayed: " + isdisplayed);
             Console.WriteLine("title upali: " + UIActions.getTitle());           
        //     UIActions.Click(ur.airbnb_login);
        //     UIActions.Click(ur.becomeahost);
-            UIActions.javascriptclick(ur.becomeahost);
+      //      UIActions.javascriptclick(ur.becomeahost);
+            UIActions.javascriptclick(ur.airbnb_login);
         }
 
         [Then(@"User is navigated to Airbnb (.*)")]
