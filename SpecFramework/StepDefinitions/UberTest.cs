@@ -96,7 +96,7 @@ namespace SpecFramework.StepDefinitions
         public void WhenUserClicksOnLogin()
         {
             Console.WriteLine("In when");
-            UIActions.waitFor(60);
+            UIActions.waitFor(150);
          //   UIActions.elementExists(ur.airbnb_login);
             UIActions.elementExists(ur.becomeahost);
 
