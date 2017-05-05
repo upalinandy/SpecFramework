@@ -104,7 +104,8 @@ namespace SpecFramework.StepDefinitions
             Console.WriteLine("is it displayed: " + isdisplayed);
             Console.WriteLine("title upali: " + UIActions.getTitle());           
        //     UIActions.Click(ur.airbnb_login);
-            UIActions.Click(ur.becomeahost);
+       //     UIActions.Click(ur.becomeahost);
+            UIActions.javascriptclick(ur.becomeahost);
         }
 
         [Then(@"User is navigated to Airbnb (.*)")]

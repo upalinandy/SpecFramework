@@ -62,6 +62,13 @@ namespace SpecFramework.ActionClasses
            return (bool)je.ExecuteScript("return document.readyState").Equals("complete");
         }
 
+        public static void javascriptclick(By elem)
+        {
+            IWebElement becomeahost = ObjectRepo.driver.FindElement(elem);
+            IJavaScriptExecutor je = (IJavaScriptExecutor)ObjectRepo.driver;
+            je.ExecuteScript("arguments[0].click();", becomeahost);
+        }
+
         public static void selectByVisibleText(By elem, string data)
         {
             Console.WriteLine("Inside Select by visible text");
