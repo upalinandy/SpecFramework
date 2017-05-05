@@ -99,6 +99,9 @@ namespace SpecFramework.StepDefinitions
             UIActions.waitFor(60);
          //   UIActions.elementExists(ur.airbnb_login);
             UIActions.elementExists(ur.becomeahost);
+
+            bool isdisplayed = UIActions.ElementDisplayed(ur.becomeahost);
+            Console.WriteLine("is it displayed: " + isdisplayed);
             Console.WriteLine("title upali: " + UIActions.getTitle());           
        //     UIActions.Click(ur.airbnb_login);
             UIActions.Click(ur.becomeahost);
