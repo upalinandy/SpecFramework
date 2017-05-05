@@ -22,6 +22,8 @@ namespace SpecFramework.ProjectLibs.UI
         public By workarea = By.XPath(".//*[contains(text(),'< Workarea >')]");
         public string checkusername = ".//*[contains(text(),'REPLACE | Sign Out')]";
         public By createconsignmenttag = By.XPath(".//*[contains(text(),'Create Consigment')]");
+     //   public By becomeahost = By.XPath(".//*[contains(text(),'Become a Host')]");
+        public By becomeahost = By.XPath(".//*[@id='site-content']/div/div/div[1]/div[2]/div[1]/header/div/div/div[3]/div/nav/ul/li[4]/div/div/a/div/div/span");
 
     }
 }

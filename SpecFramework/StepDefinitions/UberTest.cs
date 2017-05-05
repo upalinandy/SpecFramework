@@ -96,10 +96,12 @@ namespace SpecFramework.StepDefinitions
         public void WhenUserClicksOnLogin()
         {
             Console.WriteLine("In when");
-            UIActions.elementExists(ur.airbnb_login);
-            Console.WriteLine("title upali: " + UIActions.getTitle());
             UIActions.waitFor(60);
-            UIActions.Click(ur.airbnb_login);
+         //   UIActions.elementExists(ur.airbnb_login);
+            UIActions.elementExists(ur.becomeahost);
+            Console.WriteLine("title upali: " + UIActions.getTitle());           
+       //     UIActions.Click(ur.airbnb_login);
+            UIActions.Click(ur.becomeahost);
         }
 
         [Then(@"User is navigated to Airbnb (.*)")]
