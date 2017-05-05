@@ -33,8 +33,9 @@ namespace SpecFramework.ActionClasses
         }
 
         public static void elementExists(By elem)
-        {
+        {           
             ObjectRepo.wait.Until(ExpectedConditions.ElementExists(elem));
+            Console.WriteLine("element upali: " + elem);
         }
 
         
