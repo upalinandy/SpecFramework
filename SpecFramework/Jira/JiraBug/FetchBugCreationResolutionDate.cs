@@ -34,10 +34,30 @@ namespace SpecFramework.Jira.JiraBug
                  bg.bugcreationdate = issueCreatedtimestamp;
  
             }
+
+   if (bg.bugopen)
+            {
+                {
+                    tkyKey = bg.newopentktkey;
+                    Console.WriteLine("rasika new open:" + tkyKey);
+                    HttpClient client3 = new HttpClient();
+                    string issueurl_datetime = ("https://spiderlogic.jira.com/rest/api/2/issue/" + tkyKey + "?expand=changelog");
+
+                    var credentials1 = Encoding.ASCII.GetBytes("rdoshi@spiderlogic.com:spiderqa");
+                    client3.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(credentials1));
+                    Uri uri_datetime = new Uri(issueurl_datetime.ToString());
+                    string ApiResponse_datetime = client3.GetStringAsync(uri_datetime).Result;
+                    var root_changelog = JsonConvert.DeserializeObject<RootObject2>(ApiResponse_datetime);
+
+                    var issueCreatedtimestamp = root_changelog.fields2.created;
+                    bg.bugcreationdate = issueCreatedtimestamp;
+
+                }
+            }
    if (bg.closedflag)
              {
                     tkyKey = bg.closedtkyKey;
-                    Console.WriteLine("rasika closed:" + tkyKey);
+                    Console.WriteLine("rasika fetchBugCreatedClosedDate closed:" + tkyKey);
                 HttpClient client3 = new HttpClient();
                 string issueurl_datetime = ("https://spiderlogic.jira.com/rest/api/2/issue/" + tkyKey + "?expand=changelog");
 

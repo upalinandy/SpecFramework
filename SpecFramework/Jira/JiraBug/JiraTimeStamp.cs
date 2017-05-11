@@ -110,10 +110,21 @@ namespace SpecFramework.Jira.JiraBug
                 }
                 else
                 {
-                    Console.WriteLine("JIra timestamp, under if sflow, else bugcount > 1");
-                    Console.WriteLine("Text at: " + newindex + "is" + b);
-                    Text.RemoveAt(newindex);
-                    Text.Insert((newindex), lastex);
+                    if (b.Contains("Given"))
+                    {
+                        Console.WriteLine("JIra timestamp, under if sflow, else bugcount > 1 and b contains Closed");
+                        Console.WriteLine("Text at: " + newindex + "is" + b);
+                        //may 11
+                      //  Text.RemoveAt(newindex);
+                        Text.Insert((newindex), lastex);
+                    }
+                    else
+                    {
+                        Console.WriteLine("JIra timestamp, under if sflow, else bugcount > 1");
+                        Console.WriteLine("Text at: " + newindex + "is" + b);
+                        Text.RemoveAt(newindex);
+                        Text.Insert((newindex), lastex);
+                    }
                 }
             }
 
