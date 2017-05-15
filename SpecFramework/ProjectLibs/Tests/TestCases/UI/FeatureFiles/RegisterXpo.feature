@@ -1,7 +1,7 @@
 ﻿Feature: RegisterXpo
 
 
-@excel
+@new
 Scenario Outline:Go To Register Page
 	Given User is at registration page <url>
 	When User enters <fn> <ln> <jobtitle> <email> <reemail> <pwd> <repwd>

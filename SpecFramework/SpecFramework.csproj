@@ -90,78 +90,88 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionClasses\UIActions.cs" />
-    <Compile Include="CommonUtils\DriverSetup.cs" />
-    <Compile Include="CommonUtils\PageBase.cs" />
-    <Compile Include="Config\AppConfigReader.cs" />
-    <Compile Include="Config\configkeys\AppConfigKeys.cs" />
-    <Compile Include="Config\enumfolder\BrowserType.cs" />
-    <Compile Include="Config\Interfaces\Iconfig.cs" />
-    <Compile Include="CustomExceptions\NoDriverFound.cs" />
-    <Compile Include="FeatureFilePath\FeatureFilePath.cs" />
-    <Compile Include="FeatureFiles\GoogleApi.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Main\ActionClasses\UIActions.cs" />
+    <Compile Include="Main\CommonUtils\DriverSetup.cs" />
+    <Compile Include="Main\CommonUtils\PageBase.cs" />
+    <Compile Include="Main\CommonUtils\UISetup.cs" />
+    <Compile Include="Main\Config\AppConfigReader.cs" />
+    <Compile Include="Main\Config\configkeys\AppConfigKeys.cs" />
+    <Compile Include="Main\Config\enumfolder\BrowserType.cs" />
+    <Compile Include="Main\Config\Interfaces\Iconfig.cs" />
+    <Compile Include="Main\CustomExceptions\NoDriverFound.cs" />
+    <Compile Include="Main\GlobalParam\ObjectRepo.cs" />
+    <Compile Include="Main\HookFiles\General.cs" />
+    <Compile Include="Main\Jira\JiraApi\BugState.cs" />
+    <Compile Include="Main\Jira\JiraApi\Comment.cs" />
+    <Compile Include="Main\Jira\JiraApi\CreateIssue.cs" />
+    <Compile Include="Main\Jira\JiraApi\fields.cs" />
+    <Compile Include="Main\Jira\JiraApi\Issue.cs" />
+    <Compile Include="Main\Jira\JiraApi\IssueType.cs" />
+    <Compile Include="Main\Jira\JiraApi\NewFields.cs" />
+    <Compile Include="Main\Jira\JiraApi\Project.cs" />
+    <Compile Include="Main\Jira\JiraApi\RootObject.cs" />
+    <Compile Include="Main\Jira\JiraApi\Status.cs" />
+    <Compile Include="Main\Jira\JiraBug\AddJiraComment.cs" />
+    <Compile Include="Main\Jira\JiraBug\BugCreate.cs" />
+    <Compile Include="Main\Jira\JiraBug\BugStatus.cs" />
+    <Compile Include="Main\Jira\JiraBug\FetchBugCreationResolutionDate.cs" />
+    <Compile Include="Main\Jira\JiraBug\JiraTicketKeyIssue.cs" />
+    <Compile Include="Main\Jira\JiraBug\JiraTimeStamp.cs" />
+    <Compile Include="Main\Jira\JiraChangeLogApi\fields2.cs" />
+    <Compile Include="Main\Jira\JiraChangeLogApi\RootObject2.cs" />
+    <Compile Include="Main\Jira\JiraNewFeature\NewFeatureCreate.cs" />
+    <Compile Include="Main\Jira\JiraUserStory\UserStoryCreate.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\AddressComponent.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Geometry.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Location.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Result.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\RootObject.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Viewport.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\UIElements\UIElements.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\UIElements\XpoUI.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\API\FeatureFilePath\FeatureFileAPIPath.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\API\FeatureFiles\GoogleApi.feature.cs">
       <DependentUpon>GoogleApi.feature</DependentUpon>
-    </Compile>
-    <Compile Include="FeatureFiles\Specflow_Excel_SampleTest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Specflow_Excel_SampleTest.feature</DependentUpon>
     </Compile>
-    <Compile Include="GlobalParam\ObjectRepo.cs" />
-    <Compile Include="HookFiles\General.cs" />
-    <Compile Include="Jira\JiraApi\BugState.cs" />
-    <Compile Include="Jira\JiraApi\CreateIssue.cs" />
-    <Compile Include="Jira\JiraApi\fields.cs" />
-    <Compile Include="Jira\JiraApi\Issue.cs" />
-    <Compile Include="Jira\JiraApi\IssueType.cs" />
-    <Compile Include="Jira\JiraApi\NewFields.cs" />
-    <Compile Include="Jira\JiraApi\Comment.cs" />
-    <Compile Include="Jira\JiraApi\Project.cs" />
-    <Compile Include="Jira\JiraApi\RootObject.cs" />
-    <Compile Include="Jira\JiraApi\Status.cs" />
-    <Compile Include="Jira\JiraBug\AddJiraComment.cs" />
-    <Compile Include="Jira\JiraBug\BugCreate.cs" />
-    <Compile Include="Jira\JiraBug\BugStatus.cs" />
-    <Compile Include="Jira\JiraBug\FetchBugCreationResolutionDate.cs" />
-    <Compile Include="Jira\JiraBug\JiraTicketKeyIssue.cs" />
-    <Compile Include="Jira\JiraBug\JiraTimeStamp.cs" />
-    <Compile Include="Jira\JiraChangeLogApi\fields2.cs" />
-    <Compile Include="Jira\JiraChangeLogApi\RootObject2.cs" />
-    <Compile Include="Jira\JiraNewFeature\NewFeatureCreate.cs" />
-    <Compile Include="Jira\JiraUserStory\UserStoryCreate.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\AddressComponent.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\Geometry.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\Location.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\Result.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\RootObject.cs" />
-    <Compile Include="ProjectLibs\API\GoogleAPI\Viewport.cs" />
-    <Compile Include="ProjectLibs\UI\UIElements.cs" />
-    <Compile Include="ProjectLibs\UI\XpoUI.cs" />
-    <Compile Include="StepDefinitions\Api_Steps.cs" />
-    <Compile Include="StepDefinitions\UberTest.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\API\StepDefinitions\Api_Steps.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFilePath\FeatureFilePath.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\RegisterXpo.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisterXpo.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\Specflow_Excel_SampleTest.feature.cs">
+      <DependentUpon>Specflow_Excel_SampleTest.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\StepDefinitions\UberTest.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\StepDefinitions\XpoSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StepDefinitions\XpoSteps.cs" />
-    <Compile Include="TestClasses\UbTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="FeatureFiles\DataResources\APIData.xlsx" />
-    <None Include="FeatureFiles\DataResources\TestData.xlsx" />
-    <None Include="FeatureFiles\DataResources\XpoData.xlsx" />
-    <None Include="FeatureFiles\GoogleApi.feature">
+    <None Include="packages.config" />
+    <None Include="ProjectLibs\Tests\TestCases\API\FeatureFiles\DataResources\APIData.xlsx" />
+    <None Include="ProjectLibs\Tests\TestCases\API\FeatureFiles\GoogleApi.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GoogleApi.feature.cs</LastGenOutput>
     </None>
-    <None Include="FeatureFiles\Specflow_Excel_SampleTest.feature">
+    <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\DataResources\TestData.xlsx" />
+    <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\DataResources\XpoData.xlsx" />
+    <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\RegisterXpo.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RegisterXpo.feature.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\Specflow_Excel_SampleTest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Specflow_Excel_SampleTest.feature.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
     <None Include="runtests.cmd" />
     <None Include="SpecRunTestProfile.xsd">
       <SubType>Designer</SubType>
@@ -176,6 +186,7 @@
   <ItemGroup>
     <Content Include="MSBuild.exe" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SpecFlow.Plus.Excel.1.4.2\build\SpecFlow.Plus.Excel.targets" Condition="Exists('..\packages\SpecFlow.Plus.Excel.1.4.2\build\SpecFlow.Plus.Excel.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

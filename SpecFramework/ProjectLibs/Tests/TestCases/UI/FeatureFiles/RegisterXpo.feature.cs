@@ -10,14 +10,14 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFramework.FeatureFiles
+namespace SpecFramework.ProjectLibs.Tests.TestCases.UI.FeatureFiles
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("RegisterXpo", SourceFile="FeatureFiles\\RegisterXpo.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("RegisterXpo", SourceFile="ProjectLibs\\Tests\\TestCases\\UI\\FeatureFiles\\RegisterXpo.feature", SourceLine=0)]
     public partial class RegisterXpoFeature
     {
         
@@ -83,7 +83,7 @@ namespace SpecFramework.FeatureFiles
                     string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "excel"};
+                    "new"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -106,7 +106,7 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Go To Register Page, Variant 0", new string[] {
-                "excel",
+                "new",
                 "source:DataResources\\XpoData.xlsx"}, SourceLine=0)]
         public virtual void GoToRegisterPage_Variant0()
         {
@@ -116,7 +116,7 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Go To Register Page, Variant 1", new string[] {
-                "excel",
+                "new",
                 "source:DataResources\\XpoData.xlsx"}, SourceLine=0)]
         public virtual void GoToRegisterPage_Variant1()
         {

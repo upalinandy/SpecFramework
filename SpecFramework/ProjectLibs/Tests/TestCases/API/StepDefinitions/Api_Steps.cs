@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using SpecFrame.GoogleAPI;
+using SpecFramework.FeatureFileAPIPath;
 using SpecFramework.FeatureFilePath;
 using SpecFramework.Jira.JiraApi;
 using SpecFramework.Jira.JiraBug;
@@ -21,7 +22,7 @@ namespace SpecFrame.StepDefinitionFiles
     {
        
         NewFeatureCreate newfeature = new NewFeatureCreate();
-        FeatureFileBasePath featurePath = new FeatureFileBasePath();
+        FeatureFileAPIBasePath featurePath = new FeatureFileAPIBasePath();
         JiraTicketKeyIssue key = new JiraTicketKeyIssue();
         JiraTimeStamp ts = new JiraTimeStamp();
         private string googleapiurl;
@@ -49,7 +50,7 @@ namespace SpecFrame.StepDefinitionFiles
         public void GivenGoogleApiThatTakesAddressAndReturnsLatitudeAndLongitude()
         {
             string featureName = FeatureContext.Current.FeatureInfo.Title;
-            string featureFilePath = featurePath.GetFeatureFilePath(featureName);
+            string featureFilePath = featurePath.GetFeatureFileAPIPath(featureName);
             string ProjFolderPath = Directory.GetCurrentDirectory();
             newfeature.NewFeatureCheckCreate(featureName, featureFilePath);
             googleapiurl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
@@ -79,7 +80,7 @@ namespace SpecFrame.StepDefinitionFiles
             string featureName = FeatureContext.Current.FeatureInfo.Title;
             string scenarioname = ScenarioContext.Current.ScenarioInfo.Title;
             bugsummary = "Google api test does not give correct result";
-            string featureFilePath = featurePath.GetFeatureFilePath(featureName);
+            string featureFilePath = featurePath.GetFeatureFileAPIPath(featureName);
             timestamp = GetTimestamp(DateTime.Now);
             List<string> Text = File.ReadAllLines(featureFilePath).ToList();
             int index = Text.FindIndex(x => x.Contains(scenarioname));

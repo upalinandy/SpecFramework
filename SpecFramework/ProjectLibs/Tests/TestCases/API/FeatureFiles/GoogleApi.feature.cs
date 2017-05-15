@@ -10,14 +10,14 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFramework.FeatureFiles
+namespace SpecFramework.ProjectLibs.Tests.TestCases.API.FeatureFiles
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("GoogleApi", Description="\tTo test the latitude and longgitude for location", SourceFile="FeatureFiles\\GoogleApi.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("GoogleApi", Description="\tTo test the latitude and longgitude for location", SourceFile="ProjectLibs\\Tests\\TestCases\\API\\FeatureFiles\\GoogleApi.feature", SourceLine=0)]
     public partial class GoogleApiFeature
     {
         

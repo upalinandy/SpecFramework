@@ -11,13 +11,13 @@ namespace SpecFramework.HookFiles
     public sealed class General
     {
    
-        [BeforeScenario("api", "excel", "table")]
+        [BeforeScenario("excel", "table")]
         public void BeforeScneario()
         {
 
         }
 
-        [AfterScenario("api" , "excel", "table")]
+        [AfterScenario("excel", "table")]
         public void AfterScenario()
         {
             if (ObjectRepo.driver != null)

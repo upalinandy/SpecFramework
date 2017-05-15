@@ -10,27 +10,27 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFramework.FeatureFiles
+namespace SpecFramework.ProjectLibs.Tests.TestCases.UI.FeatureFiles
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("SampleUITest_usingTables", Description="\tTo Test navigation from home to login page", SourceFile="FeatureFiles\\SampleUITest_usingTables.feature", SourceLine=0)]
-    public partial class SampleUITest_UsingTablesFeature
+    [TechTalk.SpecRun.FeatureAttribute("Specflow_Excel_SampleTest", SourceFile="ProjectLibs\\Tests\\TestCases\\UI\\FeatureFiles\\Specflow_Excel_SampleTest.feature", SourceLine=0)]
+    public partial class Specflow_Excel_SampleTestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SampleUITest_usingTables.feature"
+#line 1 "Specflow_Excel_SampleTest.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SampleUITest_usingTables", "\tTo Test navigation from home to login page", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Specflow_Excel_SampleTest", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -61,65 +61,63 @@ namespace SpecFramework.FeatureFiles
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void GoToLoginPage(string url, string[] exampleTags)
+        public virtual void GoToLoginPage(string url, string signinpage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "test"};
+                    "excel"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go To Login Page", @__tags);
-#line 5
+#line 4
 this.ScenarioSetup(scenarioInfo);
-#line 6
+#line 5
  testRunner.Given(string.Format("User is at homepage {0}", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
+#line 6
  testRunner.When("User clicks on Signin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
- testRunner.Then("User is navigate to Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 9
- testRunner.When("User clicks on rider signin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("User is at ridersignin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 7
+ testRunner.Then(string.Format("User is navigated to Uber {0}", signinpage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Go To Login Page, https://www.uber.com/en-IN/", new string[] {
-                "test"}, SourceLine=13)]
+        [TechTalk.SpecRun.ScenarioAttribute("Go To Login Page,  https://www.uber.com/en-IN/", new string[] {
+                "excel",
+                "source:DataResources\\TestData.xlsx"}, SourceLine=0)]
         public virtual void GoToLoginPage_HttpsWww_Uber_ComEn_IN()
         {
-            this.GoToLoginPage("https://www.uber.com/en-IN/", ((string[])(null)));
+            this.GoToLoginPage(" https://www.uber.com/en-IN/", "Sign Into Your Uber Account | Uber", new string[] {
+                        "source:DataResources\\TestData.xlsx"});
 #line hidden
         }
         
-        public virtual void TestNavigationOfRiderSignIn(string newurl, string[] exampleTags)
+        public virtual void Tabletest(string url, string loginpage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "ignore"};
+                    "table"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Test navigation of rider sign in", @__tags);
-#line 17
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("tabletest", @__tags);
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 18
- testRunner.Given(string.Format("User being at login page {0}", newurl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 19
- testRunner.When("User clicks on rider signin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
- testRunner.Then("User is at ridersignin page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 15
+ testRunner.Given(string.Format("User is at homepage {0}", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 16
+ testRunner.When("User clicks on Login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.Then(string.Format("User is navigated to Airbnb {0}", loginpage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Test navigation of rider sign in, https://www.uber.com/en-IN/sign-in/", SourceLine=23)]
-        [TechTalk.SpecRun.IgnoreAttribute()]
-        public virtual void TestNavigationOfRiderSignIn_HttpsWww_Uber_ComEn_INSign_In()
+        [TechTalk.SpecRun.ScenarioAttribute("tabletest, https://www.airbnb.co.in/", new string[] {
+                "table"}, SourceLine=20)]
+        public virtual void Tabletest_HttpsWww_Airbnb_Co_In()
         {
-            this.TestNavigationOfRiderSignIn("https://www.uber.com/en-IN/sign-in/", ((string[])(null)));
+            this.Tabletest("https://www.airbnb.co.in/", "Vacation Rentals, Homes, Experiences & Places - Airbnb", ((string[])(null)));
 #line hidden
         }
         

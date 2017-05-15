@@ -10,9 +10,9 @@ using SpecFramework.GlobalParam;
 using SpecFramework.Jira.JiraBug;
 using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
-using SpecFramework.TestClasses;
 using SpecFramework.ProjectLibs.UI;
 using OpenQA.Selenium;
+using SpecFramework.Main.CommonUtils;
 
 namespace SpecFramework.StepDefinitions
 {
@@ -22,7 +22,7 @@ namespace SpecFramework.StepDefinitions
         // For additional details on SpecFlow step definitions see http://go.specflow.org/doc-stepdef
         NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePathBase = new FeatureFileBasePath();
-       private UbTest xpotest = new UbTest();
+       private UISetup xpotest = new UISetup();
         private XpoUI xui = new XpoUI();
   
 

@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpecFramework.TestClasses
+namespace SpecFramework.Main.CommonUtils
 {
-  public  class UbTest : UIElements
+   public class UISetup : UIElements
     {
-        public UbTest()
+        public UISetup()
         {
             Console.WriteLine("Inside Test initialize");
             ObjectRepo.Config = new AppConfigReader();
@@ -22,5 +22,5 @@ namespace SpecFramework.TestClasses
             ObjectRepo.wait = new WebDriverWait(ObjectRepo.driver, TimeSpan.FromSeconds(30));
 
         }
+      }
     }
-}

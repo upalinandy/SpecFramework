@@ -6,7 +6,7 @@ using SpecFramework.Jira.JiraApi;
 using SpecFramework.Jira.JiraBug;
 using SpecFramework.Jira.JiraNewFeature;
 using SpecFramework.Jira.JiraUserStory;
-using SpecFramework.TestClasses;
+using SpecFramework.Main.CommonUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace SpecFramework.StepDefinitions
         //  UserStoryCreate userStory = new UserStoryCreate();
         NewFeatureCreate newfeature = new NewFeatureCreate();
         FeatureFileBasePath featurePathBase = new FeatureFileBasePath();
-        private UbTest ur = new UbTest();
+        private UISetup ur = new UISetup();
         BugCreate bug = new BugCreate();
         string exceptiontext = null;
         string bugsummary = null;
