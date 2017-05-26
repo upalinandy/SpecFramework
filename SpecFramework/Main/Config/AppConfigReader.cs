@@ -25,6 +25,10 @@ namespace SpecFramework.Config
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.url);
         }
 
-      
+        public string GetDBConnectionString()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.dbconnection);
+        }
+
     }
 }
