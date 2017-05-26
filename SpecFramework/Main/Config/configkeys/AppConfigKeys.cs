@@ -16,5 +16,6 @@ namespace SpecFramework.Config.configkeys
         public const string selectitem = "selectitem";
         public const string exactitem = "exactitem";
         public const string loginpageurl = "loginpageurl";
+        public const string dbconnection = "dbconnection";
     }
 }
