@@ -33,10 +33,12 @@ namespace SpecFramework.Main.CommonUtils
         //Used for insert/update/delete operation and returns no. of rows affected by the operation
         public int ExecuteNonQuery(string sqlQuery)
         {
+            SqlConnection connection = null;
             int rowsAffected = 0;
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                SqlConnection.ClearAllPools();
+                using (connection = new SqlConnection(connectionString))
                 {
                         connection.Open();
                         SqlCommand cmd = new SqlCommand(sqlQuery, connection);
@@ -48,6 +50,10 @@ namespace SpecFramework.Main.CommonUtils
             {
                 Console.WriteLine("There was a problem while executing database query" + e);
             }
+            finally
+            {
+                if (connection != null && connection.State != System.Data.ConnectionState.Closed) connection.Close();
+            }
             return rowsAffected;
         }
 
@@ -56,10 +62,11 @@ namespace SpecFramework.Main.CommonUtils
         {
             //Each record (row) would be saved. <RowNum,Row contents>  
             Dictionary<int, Dictionary<string, object>> result = new Dictionary<int, Dictionary<string, object>>();
-
+            SqlConnection connection = null;
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                SqlConnection.ClearAllPools();
+                using (connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
@@ -71,7 +78,6 @@ namespace SpecFramework.Main.CommonUtils
                         {
                             //Each column of the row. <column header,column value>
                             Dictionary<string, object> row = new Dictionary<string, object>();
-                        //    Console.WriteLine(dr.GetName(0) + " - " + dr.GetName(1) + "---" + dr.GetValue(0) + " - " + dr.GetValue(1)); // + " - " + dr.GetValue(2));
 
                             for (int j = 0; j < dr.FieldCount; j++)
                             {
@@ -88,6 +94,10 @@ namespace SpecFramework.Main.CommonUtils
             catch (Exception e)
             {
                 Console.WriteLine("There was a problem while reading" + e);
+            }
+            finally
+            {
+               if (connection != null && connection.State != System.Data.ConnectionState.Closed) connection.Close();
             }
             return result;
         }

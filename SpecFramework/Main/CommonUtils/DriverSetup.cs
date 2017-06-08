@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
+using SpecFramework.Config.configkeys;
 using SpecFramework.Config.enumfolder;
 using SpecFramework.Config.Interfaces;
 using SpecFramework.CustomExceptions;
@@ -29,6 +31,19 @@ namespace SpecFramework.CommonUtils
             IWebDriver driver = new ChromeDriver();
             return driver;
         }
+
+        //Initiating chrome driver for Chromium Embedded Framework Application 
+        private IWebDriver GetChromeDriverForCEFApp(string pathCEFAppExe)
+        {
+            DesiredCapabilities capability = DesiredCapabilities.Chrome();
+            ChromeOptions options = new ChromeOptions();
+            options.BinaryLocation =pathCEFAppExe;   //set the property to .exe CEF App and launch the application in the chrome driver
+            capability.SetCapability(ChromeOptions.Capability, options);
+            IWebDriver driver = new ChromeDriver(options);
+            return driver;
+        }
+
+
         private IWebDriver GetIEDriver()
         {
             IWebDriver driver = new InternetExplorerDriver();
@@ -52,6 +67,10 @@ namespace SpecFramework.CommonUtils
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.AddArgument("--start-maximized");
                     driver = new ChromeDriver(chromeOptions);
+                    break;
+
+                case BrowserType.ChromeForCEF:
+                    driver = GetChromeDriverForCEFApp(Config.GetCEFAppPath());
                     break;
 
                 case BrowserType.IExplorer:
