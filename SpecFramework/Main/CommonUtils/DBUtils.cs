@@ -41,7 +41,7 @@ namespace SpecFramework.Main.CommonUtils
                 using (connection = new SqlConnection(connectionString))
                 {
                         connection.Open();
-                        SqlCommand cmd = new SqlCommand(sqlQuery, connection);
+                        using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
                         rowsAffected = cmd.ExecuteNonQuery();
                         Console.WriteLine("No. Of Rows Affected = " + rowsAffected);
                 }
