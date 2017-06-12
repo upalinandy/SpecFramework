@@ -10,6 +10,7 @@ namespace SpecFramework.Config.enumfolder
     {
         Firefox,
         Chrome,
+        ChromeForCEF,
         IExplorer,
     }
 }

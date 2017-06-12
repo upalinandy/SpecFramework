@@ -30,5 +30,12 @@ namespace SpecFramework.Config
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.dbconnection);
         }
 
+        //Get the path of the Chromium Emebdded Framework Application (.exe file) 
+        public string GetCEFAppPath()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.cefapppath);
+        }
+
+
     }
 }

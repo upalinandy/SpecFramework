@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main\ActionClasses\UIActions.cs" />
+    <Compile Include="Main\CommonUtils\DBUtils.cs" />
     <Compile Include="Main\CommonUtils\DriverSetup.cs" />
     <Compile Include="Main\CommonUtils\PageBase.cs" />
     <Compile Include="Main\CommonUtils\UISetup.cs" />
@@ -138,6 +139,11 @@
     </Compile>
     <Compile Include="ProjectLibs\Tests\TestCases\API\StepDefinitions\Api_Steps.cs" />
     <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFilePath\FeatureFilePath.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\SQLDB_QueryExecution_Sample.feature.cs">
+      <DependentUpon>SQLDB_QueryExecution_Sample.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\RegisterXpo.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +155,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ProjectLibs\Tests\TestCases\UI\StepDefinitions\UberTest.cs" />
+    <Compile Include="ProjectLibs\Tests\TestCases\UI\StepDefinitions\SqlDbSteps.cs" />
     <Compile Include="ProjectLibs\Tests\TestCases\UI\StepDefinitions\XpoSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,6 +172,10 @@
     </None>
     <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\DataResources\TestData.xlsx" />
     <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\DataResources\XpoData.xlsx" />
+    <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\SQLDB_QueryExecution_Sample.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SQLDB_QueryExecution_Sample.feature.cs</LastGenOutput>
+    </None>
     <None Include="ProjectLibs\Tests\TestCases\UI\FeatureFiles\RegisterXpo.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RegisterXpo.feature.cs</LastGenOutput>

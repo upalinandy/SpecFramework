@@ -12,5 +12,6 @@ namespace SpecFramework.Config.Interfaces
         BrowserType GetBrowser();
         string GetUrl();
         string GetDBConnectionString();
+        string GetCEFAppPath();
     }
 }
