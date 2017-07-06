@@ -25,6 +25,27 @@ namespace SpecFramework.Config
             return ConfigurationManager.AppSettings.Get(AppConfigKeys.url);
         }
 
-      
+        public string GetDBConnectionString()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.dbconnection);
+        }
+
+        public string GetWipfliUsername()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.username);
+        }
+
+        public string GetWipfliPassword()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.password);
+        }
+
+        //Get the path of the Chromium Emebdded Framework Application (.exe file) 
+        public string GetCEFAppPath()
+        {
+            return ConfigurationManager.AppSettings.Get(AppConfigKeys.cefapppath);
+        }
+
+
     }
 }

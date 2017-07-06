@@ -16,7 +16,7 @@ namespace SpecFramework.ActionClasses
             ObjectRepo.driver.Navigate().GoToUrl(url);
 
         }
-        
+
         public static void Click(By elem)
         {
             ObjectRepo.driver.FindElement(elem).Click();
@@ -33,15 +33,62 @@ namespace SpecFramework.ActionClasses
         }
 
         public static void elementExists(By elem)
-        {           
+        {
             ObjectRepo.wait.Until(ExpectedConditions.ElementExists(elem));
             Console.WriteLine("element upali: " + elem);
         }
 
-        
+        public static bool IsElementPresent(By elem)
+        {
+            bool present = false;
+            try { 
+                    ObjectRepo.driver.FindElement(elem);
+                    present = true;
+                } 
+            catch (NoSuchElementException e) 
+               {
+                    present = false;
+               }
+            return present;
+        }
+
         public static IWebElement findElement(string locator, string replacer)
         {
             return ObjectRepo.driver.FindElement(By.XPath(locator.Replace("REPLACE", ""+ replacer)));
+        }
+
+        public static IWebElement findElementbylocator(By locator)
+        {
+            return ObjectRepo.driver.FindElement(locator);
+        }
+
+        public static List<IWebElement> findElements(By locator)
+        {
+            return ObjectRepo.driver.FindElements(locator).ToList();
+        }
+
+        public static int findCountElements(By locator)
+        {
+            return ObjectRepo.driver.FindElements(locator).Count;
+        }
+
+        public static Boolean VerifyDropdown(By elem, string[] expected)
+        {
+            Console.WriteLine("Inside VerifyDropdown");
+            List<IWebElement> options = UIActions.findElements(elem);
+            Console.WriteLine("Options :" + options);
+            Console.WriteLine("count:" + options.Count);
+            int k = 0;
+            foreach (IWebElement opt in options)
+            {
+                Console.WriteLine("option value: " + opt.Text);
+                if (!opt.Text.Equals(expected[k]))
+                {
+                    return false;
+                }
+                k = k + 1;
+            }
+            return true;
         }
 
         public static Boolean ElementDisplayed(By elem)
@@ -55,7 +102,6 @@ namespace SpecFramework.ActionClasses
         }
 
      
-
         public static bool pageload()
         {
             IJavaScriptExecutor je = (IJavaScriptExecutor)ObjectRepo.driver;

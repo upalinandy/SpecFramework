@@ -11,6 +11,7 @@ namespace SpecFramework.HookFiles
     public sealed class General
     {
    
+        
         [BeforeScenario("excel", "table")]
         public void BeforeScneario()
         {
@@ -26,5 +27,15 @@ namespace SpecFramework.HookFiles
                 ObjectRepo.driver.Quit();
             }
         }
+
+        [AfterScenario("cefapp")]
+        public void AfterScenarioForCEF()
+        {
+            if (ObjectRepo.driver != null)
+            {
+                ObjectRepo.driver.Quit();
+            }
+        }
+        
     }
 }

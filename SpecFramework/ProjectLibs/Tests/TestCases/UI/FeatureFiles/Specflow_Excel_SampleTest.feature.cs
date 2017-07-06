@@ -63,13 +63,7 @@ namespace SpecFramework.ProjectLibs.Tests.TestCases.UI.FeatureFiles
         
         public virtual void GoToLoginPage(string url, string signinpage, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "excel"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go To Login Page", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Go To Login Page", exampleTags);
 #line 4
 this.ScenarioSetup(scenarioInfo);
 #line 5
@@ -83,7 +77,6 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Go To Login Page,  https://www.uber.com/en-IN/", new string[] {
-                "excel",
                 "source:DataResources\\TestData.xlsx"}, SourceLine=0)]
         public virtual void GoToLoginPage_HttpsWww_Uber_ComEn_IN()
         {
@@ -94,13 +87,7 @@ this.ScenarioSetup(scenarioInfo);
         
         public virtual void Tabletest(string url, string loginpage, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "table"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("tabletest", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("tabletest", exampleTags);
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
@@ -113,8 +100,7 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("tabletest, https://www.airbnb.co.in/", new string[] {
-                "table"}, SourceLine=20)]
+        [TechTalk.SpecRun.ScenarioAttribute("tabletest, https://www.airbnb.co.in/", SourceLine=20)]
         public virtual void Tabletest_HttpsWww_Airbnb_Co_In()
         {
             this.Tabletest("https://www.airbnb.co.in/", "Vacation Rentals, Homes, Experiences & Places - Airbnb", ((string[])(null)));
