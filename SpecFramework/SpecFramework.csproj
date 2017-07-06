@@ -36,6 +36,18 @@
       <HintPath>..\packages\JiraRestClient.0.1\lib\net40\JiraRestClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -65,6 +77,10 @@
       <HintPath>.\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="TechTalk.JiraRestClient, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TechTalk.JiraRestClient.2.5.0\lib\net40-Client\TechTalk.JiraRestClient.dll</HintPath>
       <Private>True</Private>
@@ -94,6 +110,7 @@
     <Compile Include="Main\ActionClasses\UIActions.cs" />
     <Compile Include="Main\CommonUtils\DBUtils.cs" />
     <Compile Include="Main\CommonUtils\DriverSetup.cs" />
+    <Compile Include="Main\CommonUtils\MongoDBUtils.cs" />
     <Compile Include="Main\CommonUtils\PageBase.cs" />
     <Compile Include="Main\CommonUtils\UISetup.cs" />
     <Compile Include="Main\Config\AppConfigReader.cs" />
@@ -129,6 +146,11 @@
     <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Result.cs" />
     <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\RootObject.cs" />
     <Compile Include="ProjectLibs\Tests\Resources\APIResponse\GoogleAPI\Viewport.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\MongoDB\Attachment.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\MongoDB\Claim.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\MongoDB\Creator.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\MongoDB\Request.cs" />
+    <Compile Include="ProjectLibs\Tests\Resources\MongoDB\Statuschangehistory.cs" />
     <Compile Include="ProjectLibs\Tests\Resources\UIElements\UIElements.cs" />
     <Compile Include="ProjectLibs\Tests\Resources\UIElements\XpoUI.cs" />
     <Compile Include="ProjectLibs\Tests\TestCases\API\FeatureFilePath\FeatureFileAPIPath.cs" />
