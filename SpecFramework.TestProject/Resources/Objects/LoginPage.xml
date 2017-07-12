@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Objects>
+    <object name="USERNAME" type="Textbox" property="ID" Value=""/>
+    <object name="PASSWORD" type="TextBox" property="ID" Value=""/>
+    <object name="LOGIN" type="Button" property="XPATH" Value=""/>
+    <object name="LOGOUT" type="Link" property="text" Value=""/>
+</Objects>
+
+
+
