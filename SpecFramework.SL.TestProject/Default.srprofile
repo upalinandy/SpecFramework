@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TestProfile xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5">
-  <Settings projectName="SpecFramework" />
-  <Execution stopAfterFailures="2" retryCount="0" testThreadCount="1" testSchedulingMode="Sequential" />
+  <Settings projectName="SpecFramework.TestProject" projectId="{413db91c-e9a2-435d-9136-7d8758415684}" />
+  <Execution stopAfterFailures="3" testThreadCount="1" testSchedulingMode="Sequential" />
   <!-- For collecting by a SpecRun server update and enable the following element. For using the 
       collected statistics, set testSchedulingMode="Adaptive" attribute on the <Execution> element.
     <Server serverUrl="http://specrunserver:6365" publishResults="true" />
   -->
   <TestAssemblyPaths>
-    <TestAssemblyPath>SpecFramework.Core.dll</TestAssemblyPath>
+    <TestAssemblyPath>SpecFramework.SL.TestProject.dll</TestAssemblyPath>
   </TestAssemblyPaths>
-
-  -  <Filter>@api | @ui |@excel |@table |@cefapp</Filter>
+  <Filter>@api | @ui |@excel |@table |@cefapp</Filter>
   <DeploymentTransformation>
     <Steps>
       <!-- sample config transform to change the connection string-->
