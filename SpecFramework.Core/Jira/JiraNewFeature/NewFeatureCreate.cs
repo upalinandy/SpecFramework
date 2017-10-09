@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-
+ 
 namespace SpecFramework.Core.Jira.JiraNewFeature
 {
     public class NewFeatureCreate
@@ -39,9 +39,9 @@ namespace SpecFramework.Core.Jira.JiraNewFeature
             //Checking if the new feature already exists by iterating though the issue list in jira
             bool FeatureExists = false;
             var issues = root.issues;
-            Console.WriteLine("upali filename: " + fileName);
+            Console.WriteLine("filename: " + fileName);
             string[] textLinesFT = System.IO.File.ReadAllLines(fileName);
-            Console.WriteLine("upali textLinesFT: " + textLinesFT);
+            Console.WriteLine("textLinesFT: " + textLinesFT);
             //Finding the feature name from the feature file which will be the name of the ticket
             string FeatureKeyword = "Feature";
             string FeaureTRName = string.Empty;

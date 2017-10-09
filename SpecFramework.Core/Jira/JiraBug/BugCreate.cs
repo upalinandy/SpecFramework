@@ -43,7 +43,7 @@ namespace SpecFramework.Core.Jira.JiraBug
             //Checking if the user story already exists by iterating though the issue list in jira
            
             var issues = root.issues;
-            Debug.WriteLine("Upali Debug: ");
+            Debug.WriteLine("Debug: ");
 
             foreach (var issue in issues)
             {
